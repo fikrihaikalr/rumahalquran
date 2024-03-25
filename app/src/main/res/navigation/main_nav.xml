@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.fikrihaikal.qurancall.ui.splashscreen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.fikrihaikal.qurancall.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.fikrihaikal.qurancall.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.fikrihaikal.qurancall.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_materiBelajarFragment"
+            app:destination="@id/materiBelajarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/materiBelajarFragment"
+        android:name="com.fikrihaikal.qurancall.ui.materibelajar.MateriBelajarFragment"
+        android:label="fragment_materi_belajar"
+        tools:layout="@layout/fragment_materi_belajar" />
+    <fragment
+        android:id="@+id/waktuAdzanFragment"
+        android:name="com.fikrihaikal.qurancall.ui.adzan.WaktuAdzanFragment"
+        android:label="fragment_waktu_adzan"
+        tools:layout="@layout/fragment_waktu_adzan" />
+    <fragment
+        android:id="@+id/alquranFragment"
+        android:name="com.fikrihaikal.qurancall.ui.alquran.AlquranFragment"
+        android:label="fragment_alquran"
+        tools:layout="@layout/fragment_alquran" />
+    <fragment
+        android:id="@+id/compassFragment"
+        android:name="com.fikrihaikal.qurancall.ui.compass.CompassFragment"
+        android:label="fragment_compass"
+        tools:layout="@layout/fragment_compass" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.fikrihaikal.qurancall.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>
