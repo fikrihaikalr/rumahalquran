@@ -26,7 +26,7 @@ fun getItemMenuList(context:Context):List<ItemMenu>{
         ItemMenu(
             context.getString(R.string.collection_of_prayers),
             R.drawable.ic_kumpulan_doa,
-            R.id.action_homeFragment_to_materiBelajarFragment
+            R.id.action_homeFragment_to_doaFragment
         )
     )
     listMenu.add(

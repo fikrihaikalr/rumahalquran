@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
         ViewModelFactory(requireContext())
     }
     private lateinit var tokenPreferences: TokenPreferences
+    private lateinit var token : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +69,7 @@ class LoginFragment : Fragment() {
             val dataStore: DataStore<Preferences> = requireContext().dataStore
             tokenPreferences = TokenPreferences.getInstance(dataStore)
 
+
             loginViewModel.login(LoginBody(email, password))
             loginViewModel.login.observe(viewLifecycleOwner){
                 if (it != null){
@@ -81,21 +83,13 @@ class LoginFragment : Fragment() {
                             if (data?.error == true){
                                 Toast.makeText(requireContext(),"Gagal Register",Toast.LENGTH_LONG).show()
                             }else{
-                                data?.loginResult?.token?.let { tokenLogin
-                                -> lifecycleScope.launch {
-                                    tokenPreferences.saveToken(tokenLogin)
+
+                                data?.loginResult?.let { loginResult ->
+                                    lifecycleScope.launch {
+                                        loginResult.id?.let { it1 -> tokenPreferences.saveUserId(it1) }
+                                        loginResult.token?.let { itToken -> tokenPreferences.saveToken(itToken) }
+                                    }
                                 }
-                                }
-//                                data?.loginResult?.let { loginResult ->
-//                                    loginResult.token?.let { token ->
-//                                        lifecycleScope.launch {
-//                                            tokenPreferences.saveToken(token)
-//                                            loginResult.id?.let { userId ->
-//                                                tokenPreferences.saveUserId(userId)
-//                                            }
-//                                        }
-//                                    }
-//                                }
                                 Toast.makeText(requireContext(),"Success Login",Toast.LENGTH_LONG).show()
                                 btn.findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                             }

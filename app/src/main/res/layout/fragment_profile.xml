@@ -107,6 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_biodata">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_username_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edit_username" />
@@ -128,6 +129,7 @@
         app:layout_constraintTop_toBottomOf="@id/username_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_email_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edit_email" />

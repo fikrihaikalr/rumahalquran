@@ -16,7 +16,7 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
 
     private object PreferencesKeys {
         val TOKEN = stringPreferencesKey("token")
-//        val USER_ID = intPreferencesKey("user_id")
+        val USER_ID = intPreferencesKey("user_id")
         val EMAIL = stringPreferencesKey("email")
 
     }
@@ -36,16 +36,16 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
         return preferences[PreferencesKeys.EMAIL]
     }
 
-//    suspend fun saveUserId(userId:Int){
-//        dataStore.edit { prefereces ->
-//            prefereces[PreferencesKeys.USER_ID] = userId
-//        }
-//    }
-//
-//    suspend fun getUserId():Int?{
-//        val preferences = dataStore.data.first()
-//        return preferences[PreferencesKeys.USER_ID]
-//    }
+    suspend fun saveUserId(userId:Int){
+        dataStore.edit { prefereces ->
+            prefereces[PreferencesKeys.USER_ID] = userId
+        }
+    }
+
+    suspend fun getUserId():Int?{
+        val preferences = dataStore.data.first()
+        return preferences[PreferencesKeys.USER_ID]
+    }
 
 
      suspend fun getToken(): String? {
@@ -59,7 +59,11 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
         }
 
     }
-
+    suspend fun deleteId(){
+        dataStore.edit {preference ->
+            preference.remove(PreferencesKeys.USER_ID)
+        }
+    }
 
 
 

@@ -39,4 +39,12 @@
     <string name="collection_of_short_prayers">Kumpulan Doa-Doa Singkat</string>
     <string name="prayer_before_sleeping">Doa Sebelum Tidur</string>
     <string name="with_your_name_ya_allah_I_live_and_die">Dengan nama-Mu ya Allah, aku hidup dan aku mati.</string>
+    <string name="title_collection_prayer">Kumpulan Doa-Doa</string>
+    <string name="wake_up_prayer">Doa Bangun Tidur</string>
+    <string name="the_meaning_of_the_wake_up_prayer">Segala puji bagi-Mu, ya Allah, yang telah menghidupkan kembali diriku setelah kematianku, dan hanya kepada-Nya nantinya kami semua akan dihidupkan kembali</string>
+    <string name="meal_prayer">Doa Makan</string>
+    <string name="meaning_of_meal_prayer">Ya Allah, limpahkanlah keberkahan kepada kami atas apa yang telah Engkau rezekikan kepada kami, dan jauhkanlah kami dari siksa neraka</string>
+    <string name="prayer_after_eating">Doa Setelah Makan</string>
+    <string name="the_meaning_of_prayer_after_eating">Segala puji bagi Allah yang telah memberi kami makan dan telah memberi kami minum, serta telah menjadikan kami sebagai orang-orang Islam</string>
+    <string name="sub_menu">Sub Menu</string>
 </resources>

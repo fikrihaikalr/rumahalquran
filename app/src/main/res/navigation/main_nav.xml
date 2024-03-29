@@ -46,12 +46,19 @@
         <action
             android:id="@+id/action_homeFragment_to_materiBelajarFragment"
             app:destination="@id/materiBelajarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_doaFragment"
+            app:destination="@id/doaFragment" />
     </fragment>
     <fragment
         android:id="@+id/materiBelajarFragment"
         android:name="com.fikrihaikal.qurancall.ui.materibelajar.MateriBelajarFragment"
         android:label="fragment_materi_belajar"
-        tools:layout="@layout/fragment_materi_belajar" />
+        tools:layout="@layout/fragment_materi_belajar" >
+        <action
+            android:id="@+id/action_materiBelajarFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/waktuAdzanFragment"
         android:name="com.fikrihaikal.qurancall.ui.adzan.WaktuAdzanFragment"
@@ -75,5 +82,14 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doaFragment"
+        android:name="com.fikrihaikal.qurancall.ui.doa.DoaFragment"
+        android:label="fragment_doa"
+        tools:layout="@layout/fragment_doa" >
+        <action
+            android:id="@+id/action_doaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

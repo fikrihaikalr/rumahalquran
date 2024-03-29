@@ -1,6 +1,8 @@
 package com.fikrihaikal.qurancall.data.repository
 
 import android.content.Context
+import com.fikrihaikal.qurancall.network.model.response.doa.DoaItem
+import com.fikrihaikal.qurancall.network.model.response.doa.ListDoaResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterBody
@@ -22,8 +24,18 @@ class DataRepository(private val  apiService: ApiService, private val context: C
             apiService.postRegist(registerBody)
         }
 
-//    suspend fun getUser(userId:Int):Resource<GetUserResponse> =
-//        proceed {
-//            apiService.getUser(userId)
-//        }
+    suspend fun getUser(userId:Int):Resource<GetUserResponse> =
+        proceed {
+            apiService.getUser(userId)
+        }
+    suspend fun getListDoa():Resource<ListDoaResponse> =
+        proceed {
+            apiService.getListDoa()
+        }
 }
+
+//    fun getDoaList(): Flow<PagingData<DoaItem>> =
+//        Pager(
+//            config = PagingConfig(pageSize = 5, enablePlaceholders = false),
+//            pagingSourceFactory = { DoaPagingSource(apiService, context) }
+//        ).flow

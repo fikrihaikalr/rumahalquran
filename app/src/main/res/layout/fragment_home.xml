@@ -161,20 +161,252 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_menu"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_doa"
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_doa1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/list_doa"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_kumpulan_doa"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_name_doa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="94dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/prayer_before_sleeping"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inter_semibold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_doa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="بِاسْمِ اللهِ اللَّهُمَّ إِنِّي أَعُوْذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَاءِثِ"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name_doa"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_doa"
+                        app:layout_constraintEnd_toEndOf="@id/tv_name_doa"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_arti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/with_your_name_ya_allah_I_live_and_die"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="44dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_doa"
+                        app:layout_constraintStart_toStartOf="@id/tv_doa"
+                        app:layout_constraintEnd_toEndOf="@id/tv_doa"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_doa2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/cv_doa1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_name_doa2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="94dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/wake_up_prayer"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inter_semibold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_doa2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُوْر"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name_doa2"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_doa2"
+                        app:layout_constraintEnd_toEndOf="@id/tv_name_doa2"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_arti2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/the_meaning_of_the_wake_up_prayer"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="44dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_doa2"
+                        app:layout_constraintStart_toStartOf="@id/tv_doa2"
+                        app:layout_constraintEnd_toEndOf="@id/tv_doa2"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_doa3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/cv_doa2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_name_doa3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="94dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/meal_prayer"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inter_semibold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_doa3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="اللَّهُمَّ بَارِكْ لَنَا فِيْمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّار"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name_doa3"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_doa3"
+                        app:layout_constraintEnd_toEndOf="@id/tv_name_doa3"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_arti3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/meaning_of_meal_prayer"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="44dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_doa3"
+                        app:layout_constraintStart_toStartOf="@id/tv_doa3"
+                        app:layout_constraintEnd_toEndOf="@id/tv_doa3"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_doa4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="90dp"
+                app:layout_constraintTop_toBottomOf="@id/cv_doa3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingBottom="50dp"/>
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_name_doa4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="94dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/prayer_after_eating"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inter_semibold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_doa4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِيْن"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name_doa4"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_doa4"
+                        app:layout_constraintEnd_toEndOf="@id/tv_name_doa4"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_arti4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/the_meaning_of_prayer_after_eating"
+                        android:fontFamily="@font/inter_regular"
+                        android:textColor="@color/hitam"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="44dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_doa4"
+                        app:layout_constraintStart_toStartOf="@id/tv_doa4"
+                        app:layout_constraintEnd_toEndOf="@id/tv_doa4"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--    android:id="@+id/rv_list_doa"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    tools:listitem="@layout/list_doa"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/tv_kumpulan_doa"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    android:paddingBottom="50dp"/>-->
     <!--    <ScrollView-->
     <!--        android:layout_width="0dp"-->
     <!--        android:layout_height="0dp"-->

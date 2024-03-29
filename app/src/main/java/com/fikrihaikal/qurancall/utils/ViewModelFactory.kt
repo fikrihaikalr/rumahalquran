@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fikrihaikal.qurancall.di.Injection
+import com.fikrihaikal.qurancall.ui.doa.DoaViewModel
 import com.fikrihaikal.qurancall.ui.home.HomeViewModel
 import com.fikrihaikal.qurancall.ui.login.LoginViewModel
+import com.fikrihaikal.qurancall.ui.profile.ProfileViewModel
 import com.fikrihaikal.qurancall.ui.register.RegisterViewModel
 
 
@@ -18,6 +20,15 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(DoaViewModel::class.java) ->{
+                DoaViewModel(Injection.provideRepository(context)) as T
             }
 
             else ->throw java.lang.IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

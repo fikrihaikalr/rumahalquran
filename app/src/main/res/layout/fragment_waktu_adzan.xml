@@ -77,6 +77,7 @@
                         android:text="@string/quot_barangsiapa_yang_meninggalkan_sholat_maka_ia_telah_kafir_quot_n_hr_ahmad_abu_daud_at_tirmidzi_an_nasai_dan_ibnu_majah"
                         android:textColor="@color/putih"
                         android:textSize="11sp"
+                        android:layout_marginHorizontal="10dp"
                         android:fontFamily="@font/inter_medium"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

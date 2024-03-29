@@ -8,17 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.MotionEvent
+import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fikrihaikal.qurancall.ui.home.adapters.home.HomeMenuAdapter
 import com.fikrihaikal.qurancall.databinding.FragmentHomeBinding
-import com.fikrihaikal.qurancall.network.model.data.home.getItemDoaList
 import com.fikrihaikal.qurancall.network.model.data.home.getItemMenuList
-import com.fikrihaikal.qurancall.ui.home.adapters.home.ListDoaAdapter
+import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.TokenPreferences
+import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import com.fikrihaikal.qurancall.utils.dataStore
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -34,11 +39,12 @@ class HomeFragment : Fragment() {
             findNavController().navigate(it.navigation)
         }
     }
-//    private val homeViewModel : HomeViewModel by viewModels {
-//        ViewModelFactory(requireContext())
-//    }
+    private val homeViewModel : HomeViewModel by viewModels {
+        ViewModelFactory(requireContext())
+    }
     private lateinit var tokenPreferences: TokenPreferences
-    private val homeVm: HomeViewModel by viewModels()
+    private lateinit var token :String
+    private lateinit var idUser : String
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -61,65 +67,76 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initPreference()
         handler.post(updateTimeTask)
+        initUI()
+        setRvMenu()
 
+    }
+    private fun initUI() {
         val cal = UmmalquraCalendar()
         val formatMonth = cal.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.ENGLISH)
         val formatDay = cal.get(Calendar.DAY_OF_MONTH)
         val formatYear = cal.get(Calendar.YEAR)
         binding.dateMasehi.text = "$formatDay $formatMonth $formatYear"
+    }
 
-        //untuk list menu
-        binding.run {
-            rvMenu.adapter = menuAdapter
-            rvMenu.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
-            rvMenu.setHasFixedSize(true)
-            menuAdapter.setItems(getItemMenuList(requireContext()))
-            rvMenu.setOnTouchListener { _, event ->
-                return@setOnTouchListener event.actionMasked == MotionEvent.ACTION_MOVE
-            }
+    private fun setRvMenu() = with(binding){
+        rvMenu.adapter = menuAdapter
+        rvMenu.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
+        rvMenu.setHasFixedSize(true)
+        menuAdapter.setItems(getItemMenuList(requireContext()))
+        rvMenu.setOnTouchListener { _, event ->
+            return@setOnTouchListener event.actionMasked == MotionEvent.ACTION_MOVE
         }
+    }
 
-        //untuk list doa
-        binding.run {
-            val adapter = ListDoaAdapter()
-            rvListDoa.adapter = adapter
-            rvListDoa.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
-            rvListDoa.setHasFixedSize(true)
-            adapter.setListDoa(getItemDoaList(requireContext()))
+    private fun initPreference(){
+        val dataStore: DataStore<Preferences> = requireContext().dataStore
+        tokenPreferences = TokenPreferences.getInstance(dataStore)
+        lifecycleScope.launch {
+            idUser = tokenPreferences.getUserId().toString()
+            observeUser()
         }
-
-        //setEmail
-
-//        lifecycleScope.launch {
-//            val userId = tokenPreferences.getUserId()
-//            if (userId != null){
-//                homeViewModel.getUser(userId)
-//            }
-//        }
-//        homeViewModel.userResponse.observe(viewLifecycleOwner){ resource ->
-//            when(resource){
-//                is Resource.Success ->{
-//                    val username = resource.data?.username
-//                    binding.tvName.text = username
-//                }
-//                is Resource.Error -> {
-//                    // Tanggapan error: tangani kesalahan jika terjadi
-//                    Toast.makeText(requireContext(), "Error: ${resource.message}", Toast.LENGTH_SHORT).show()
-//                }
-//                is Resource.Loading -> {
-//                    // Tanggapan sedang dimuat: tampilkan indikator loading atau lakukan tindakan yang sesuai
-//                }
-//            }
-//        }
 
     }
 
+    private fun observeUser() = with(binding) {
+        lifecycleScope.launch {
+            if (idUser != null) {
+                homeViewModel.getUser(idUser.toInt())
 
+                homeViewModel.userResponse.observe(viewLifecycleOwner) { resource ->
+                    when (resource) {
+                        is Resource.Success -> {
+                            Log.i("observeUser resource", "masuk succses")
+                            val username = resource.data?.username
+                            binding.tvName.text = username
+                        }
+
+                        is Resource.Error -> {
+                            // Tanggapan error: tangani kesalahan jika terjadi
+                            Toast.makeText(
+                                requireContext(),
+                                "Error: ${resource.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        is Resource.Loading -> {
+                            // Tanggapan sedang dimuat: tampilkan indikator loading atau lakukan tindakan yang sesuai
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
+
