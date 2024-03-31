@@ -1,6 +1,8 @@
 package com.fikrihaikal.qurancall.ui.doa
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,6 +23,7 @@ import com.fikrihaikal.qurancall.ui.doa.adapter.DoaAdapter
 import com.fikrihaikal.qurancall.ui.doa.adapter.LoadingStateAdapter
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -34,7 +37,6 @@ class DoaFragment : Fragment() {
     }
     private lateinit var doaAdapter: DoaAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,17 +47,12 @@ class DoaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        backToHome()
         setAdapter()
+        backToHome()
         doaViewModel.getAllDoa()
         observerDoa()
     }
     private fun observerDoa() {
-//        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-//            doaViewModel.listDoa.collectLatest { pagingData ->
-//                doaAdapter.submitData(pagingData)
-//            }
-//        }
         doaViewModel.listDoa.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .onEach(doaAdapter::submitData).launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -88,6 +85,13 @@ class DoaFragment : Fragment() {
         }
     }
 }
+
+//        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+//            doaViewModel.listDoa.collectLatest { pagingData ->
+//                doaAdapter.submitData(pagingData)
+//            }
+//        }
+
 //    private val doaAdapter:DoaAdapter by lazy {
 //        DoaAdapter{
 //

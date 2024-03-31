@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.fikrihaikal.qurancall.di.Injection
 import com.fikrihaikal.qurancall.ui.detaildoa.DetailDoaViewModel
 import com.fikrihaikal.qurancall.ui.doa.DoaViewModel
+import com.fikrihaikal.qurancall.ui.gantipassword.GantiPasswordViewModel
 import com.fikrihaikal.qurancall.ui.home.HomeViewModel
 import com.fikrihaikal.qurancall.ui.login.LoginViewModel
 import com.fikrihaikal.qurancall.ui.profile.ProfileViewModel
@@ -33,6 +34,9 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             }
             modelClass.isAssignableFrom(DetailDoaViewModel::class.java) ->{
                 DetailDoaViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(GantiPasswordViewModel::class.java) ->{
+                GantiPasswordViewModel(Injection.provideRepository(context), Injection.provideDataStore(context)) as T
             }
 
             else ->throw java.lang.IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

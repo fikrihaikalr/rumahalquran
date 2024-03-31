@@ -13,6 +13,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentProfileBinding
 import com.fikrihaikal.qurancall.utils.Resource
@@ -40,8 +41,22 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         profileView.getUser()
+        toChangePhoto()
+        toChangePassword()
         logout()
         observeUser()
+    }
+
+    private fun toChangePassword() {
+        binding.constraintPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_gantiPasswordFragment)
+        }
+    }
+
+    private fun toChangePhoto() {
+        binding.cv1.setOnClickListener{
+            findNavController().navigate(R.id.action_profileFragment_to_gantiFotoFragment)
+        }
     }
 
 
@@ -53,11 +68,11 @@ class ProfileFragment : Fragment() {
                     val email = resources.data?.email
                     val usernameEditTable =
                         username?.let { Editable.Factory.getInstance().newEditable(it) }
-                    val emailEditTabele =
+                    val emailEditTable =
                         email?.let { Editable.Factory.getInstance().newEditable(it) }
                     binding.tvNameProfile.text = username
                     binding.edUsernameProfile.text = usernameEditTable
-                    binding.edEmailProfile.text = emailEditTabele
+                    binding.edEmailProfile.text = emailEditTable
                 }
 
                 is Resource.Error -> {

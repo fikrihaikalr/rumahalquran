@@ -89,6 +89,12 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_gantiFotoFragment"
+            app:destination="@id/gantiFotoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_gantiPasswordFragment"
+            app:destination="@id/gantiPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/doaFragment"
@@ -125,6 +131,24 @@
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_settingFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiFotoFragment"
+        android:name="com.fikrihaikal.qurancall.ui.fotoprofile.GantiFotoFragment"
+        android:label="fragment_ganti_foto"
+        tools:layout="@layout/fragment_ganti_foto" >
+        <action
+            android:id="@+id/action_gantiFotoFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiPasswordFragment"
+        android:name="com.fikrihaikal.qurancall.ui.gantipassword.GantiPasswordFragment"
+        android:label="fragment_ganti_password"
+        tools:layout="@layout/fragment_ganti_password" >
+        <action
+            android:id="@+id/action_gantiPasswordFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

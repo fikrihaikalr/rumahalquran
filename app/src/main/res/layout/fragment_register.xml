@@ -51,7 +51,8 @@
             android:id="@+id/ed_username_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_username" />
+            android:hint="@string/input_username"
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +73,8 @@
             android:id="@+id/ed_email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_email"/>
+            android:hint="@string/input_email"
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -94,7 +96,8 @@
             android:id="@+id/ed_password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_password"/>
+            android:hint="@string/input_password"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -116,7 +119,8 @@
             android:id="@+id/ed_confirm_password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_confirm_password"/>
+            android:hint="@string/input_confirm_password"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

@@ -54,4 +54,14 @@
     <string name="password">Password</string>
     <string name="more">More</string>
     <string name="help">Help</string>
+    <string name="change_photo">Ganti Foto Profile</string>
+    <string name="input_your_photo">Masukkan gambar profile baru Anda</string>
+    <string name="rules_and_policies">Dengan melanjutkan, Anda setuju dengan Aturan dan\nKebijakan Perubahan Foto Profil.</string>
+    <string name="rules">Aturan</string>
+    <string name="policies">Kebijakan Perubahan</string>
+    <string name="save">Simpan</string>
+    <string name="input_your_change_password">Masukkan password baru kamu</string>
+    <string name="change_password">Ganti Password</string>
+    <string name="edit_new_password">Masukkan Password Baru</string>
+    <string name="edit_new_konfirmasi_password">Masukkan Konfirmasi Password Baru</string>
 </resources>
