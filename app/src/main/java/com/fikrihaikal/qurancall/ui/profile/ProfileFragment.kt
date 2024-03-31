@@ -24,12 +24,10 @@ import kotlinx.coroutines.launch
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    lateinit var tokenPreferences: TokenPreferences
 
     private val profileView: ProfileViewModel by viewModels {
         ViewModelFactory(requireContext())
     }
-    private lateinit var idUser: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,59 +39,43 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPreferences()
+        profileView.getUser()
         logout()
+        observeUser()
     }
 
-    private fun initPreferences() {
-        val dataStore: DataStore<Preferences> = requireContext().dataStore
-        tokenPreferences = TokenPreferences.getInstance(dataStore)
-        lifecycleScope.launch {
-            idUser = tokenPreferences.getUserId().toString()
-            observeUser()
-        }
-    }
 
     private fun observeUser() = with(binding) {
-        lifecycleScope.launch {
-            if (idUser != null){
-                profileView.getUser(idUser.toInt())
-
-                profileView.profile.observe(viewLifecycleOwner){resources ->
-                    when(resources){
-                        is Resource.Success ->{
-                            val username = resources.data?.username
-                            val email = resources.data?.email
-                            val usernameEditTable = username?.let{Editable.Factory.getInstance().newEditable(it)}
-                            val emailEditTabele = email?.let { Editable.Factory.getInstance().newEditable(it) }
-                            binding.tvNameProfile.text = username
-                            binding.edUsernameProfile.text = usernameEditTable
-                            binding.edEmailProfile.text = emailEditTabele
-                        }
-                        is Resource.Error ->{
-                            Toast.makeText(requireContext(),"Error: ${resources.message}",
-                                Toast.LENGTH_SHORT).show()
-                        }
-                        is Resource.Loading ->{}
-                    }
+        profileView.profile.observe(viewLifecycleOwner) { resources ->
+            when (resources) {
+                is Resource.Success -> {
+                    val username = resources.data?.username
+                    val email = resources.data?.email
+                    val usernameEditTable =
+                        username?.let { Editable.Factory.getInstance().newEditable(it) }
+                    val emailEditTabele =
+                        email?.let { Editable.Factory.getInstance().newEditable(it) }
+                    binding.tvNameProfile.text = username
+                    binding.edUsernameProfile.text = usernameEditTable
+                    binding.edEmailProfile.text = emailEditTabele
                 }
+
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(), "Error: ${resources.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is Resource.Loading -> {}
             }
         }
     }
 
     private fun logout() {
         binding.btnLogout.setOnClickListener {
-            deleteToken()
+            profileView.deleteIdNDeleteToken()
             it.findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
-        }
-    }
-
-    private fun deleteToken() {
-        val dataStore: DataStore<Preferences> = requireContext().dataStore
-        tokenPreferences = TokenPreferences.getInstance(dataStore)
-        lifecycleScope.launch {
-            tokenPreferences.deleteToken()
-            tokenPreferences.deleteId()
         }
     }
 

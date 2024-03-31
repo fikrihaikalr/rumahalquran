@@ -35,8 +35,6 @@ class LoginFragment : Fragment() {
     private val loginViewModel : LoginViewModel by viewModels {
         ViewModelFactory(requireContext())
     }
-    private lateinit var tokenPreferences: TokenPreferences
-    private lateinit var token : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,10 +64,6 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener { btn ->
             val email = binding.edEmailLogin.text.toString()
             val password = binding.edPasswordLogin.text.toString()
-            val dataStore: DataStore<Preferences> = requireContext().dataStore
-            tokenPreferences = TokenPreferences.getInstance(dataStore)
-
-
             loginViewModel.login(LoginBody(email, password))
             loginViewModel.login.observe(viewLifecycleOwner){
                 if (it != null){
@@ -85,9 +79,13 @@ class LoginFragment : Fragment() {
                             }else{
 
                                 data?.loginResult?.let { loginResult ->
-                                    lifecycleScope.launch {
-                                        loginResult.id?.let { it1 -> tokenPreferences.saveUserId(it1) }
-                                        loginResult.token?.let { itToken -> tokenPreferences.saveToken(itToken) }
+                                    loginResult.id?.let { it1 ->
+                                        loginResult.token?.let { it2 ->
+                                            loginViewModel.saveIdNSaveToken(
+                                                it2,
+                                                it1
+                                            )
+                                        }
                                     }
                                 }
                                 Toast.makeText(requireContext(),"Success Login",Toast.LENGTH_LONG).show()

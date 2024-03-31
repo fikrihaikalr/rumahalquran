@@ -10,18 +10,19 @@ import com.fikrihaikal.qurancall.data.repository.DataRepository
 import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.TokenPreferences
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.security.auth.callback.Callback
 
 
-class HomeViewModel(private val dataRepository: DataRepository): ViewModel() {
+class HomeViewModel(private val dataRepository: DataRepository,private val tokenPreferences: TokenPreferences): ViewModel() {
     private val _userResponse = MutableLiveData<Resource<GetUserResponse>>()
     val userResponse: LiveData<Resource<GetUserResponse>> get() = _userResponse
 
-    fun getUser(userId:Int){
-        viewModelScope.launch {
-            _userResponse.value = dataRepository.getUser(userId)
+    fun getUser(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _userResponse.postValue(tokenPreferences.getUserId()?.let { dataRepository.getUser(it)})
         }
     }
 }

@@ -47,4 +47,11 @@
     <string name="prayer_after_eating">Doa Setelah Makan</string>
     <string name="the_meaning_of_prayer_after_eating">Segala puji bagi Allah yang telah memberi kami makan dan telah memberi kami minum, serta telah menjadikan kami sebagai orang-orang Islam</string>
     <string name="sub_menu">Sub Menu</string>
+    <string name="translate">Artinya:</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="user">Pengguna</string>
+    <string name="account">Account</string>
+    <string name="password">Password</string>
+    <string name="more">More</string>
+    <string name="help">Help</string>
 </resources>

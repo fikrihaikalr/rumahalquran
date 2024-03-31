@@ -9,11 +9,12 @@ import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
 import com.fikrihaikal.qurancall.utils.Resource
+import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val dataRepository: DataRepository) : ViewModel() {
+class LoginViewModel(private val dataRepository: DataRepository,private val tokenPreferences: TokenPreferences) : ViewModel() {
     private val _login = MutableLiveData<Resource<LoginResponse>>()
     val login: LiveData<Resource<LoginResponse>> get() = _login
 
@@ -25,6 +26,13 @@ class LoginViewModel(private val dataRepository: DataRepository) : ViewModel() {
             viewModelScope.launch(Dispatchers.Main){
                 _login.postValue(response)
             }
+        }
+    }
+
+    fun saveIdNSaveToken(token:String,userId:Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            tokenPreferences.saveToken(token)
+            tokenPreferences.saveUserId(userId)
         }
     }
 }

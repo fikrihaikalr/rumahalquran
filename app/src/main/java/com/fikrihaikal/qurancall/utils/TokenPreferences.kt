@@ -46,8 +46,6 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
         val preferences = dataStore.data.first()
         return preferences[PreferencesKeys.USER_ID]
     }
-
-
      suspend fun getToken(): String? {
         val preferences = dataStore.data.first()
         return preferences[PreferencesKeys.TOKEN]

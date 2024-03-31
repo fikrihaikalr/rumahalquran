@@ -1,5 +1,6 @@
 package com.fikrihaikal.qurancall.ui.adzan
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,7 @@ class WaktuAdzanViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     _cities.value = response.body()?.data ?: emptyList()
+                    Log.e("adzan viewModel","berhasil")
                 } else {
                     // Handle error response
                 }

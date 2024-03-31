@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -64,16 +65,21 @@ class WaktuAdzanFragment : Fragment() {
                         response: Response<WaktuAdzanResponse?>
                     ) {
                         if (response.isSuccessful) {
-                            val jadwalAdzan = response.body()?.data?.jadwal
-
-                            // Set nilai jadwal sholat ke TextView sesuai dengan id-nya
-                            binding.run {
-                                tvJadwalSubuh.text = jadwalAdzan?.subuh
-                                tvJadwalDzuhur.text = jadwalAdzan?.dzuhur
-                                tvJadwalAshar.text = jadwalAdzan?.ashar
-                                tvJadwalMaghrib.text = jadwalAdzan?.maghrib
-                                tvJadwalIsya.text = jadwalAdzan?.isya
-                            }
+//                            val waktuAdzanResponse = response.body()
+//
+////                            val jadwalAdzan = response.body()?.data?.jadwal
+//                            if (waktuAdzanResponse != null && waktuAdzanResponse.data != null){
+                                val jadwalAdzan = response.body()?.data?.jadwal
+                                Log.e("adzan","data berhasil diterima: $jadwalAdzan")
+                                // Set nilai jadwal sholat ke TextView sesuai dengan id-nya
+                                binding.run {
+                                    tvJadwalSubuh.text = jadwalAdzan?.subuh.toString()
+                                    tvJadwalDzuhur.text = jadwalAdzan?.dzuhur.toString()
+                                    tvJadwalAshar.text = jadwalAdzan?.ashar.toString()
+                                    tvJadwalMaghrib.text = jadwalAdzan?.maghrib.toString()
+                                    tvJadwalIsya.text = jadwalAdzan?.isya.toString()
+                                }
+//                            }
                             // Lanjutkan untuk semua jadwal sholat yang Anda inginkan
                         } else {
                             Toast.makeText(

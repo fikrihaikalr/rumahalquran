@@ -1,7 +1,6 @@
 package com.fikrihaikal.qurancall.utils
 
 import android.net.http.HttpException
-import com.fikrihaikal.qurancall.network.model.response.doa.DoaItem
 import com.fikrihaikal.qurancall.network.model.response.error.ResponseError
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.google.gson.Gson
