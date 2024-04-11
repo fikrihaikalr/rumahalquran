@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fikrihaikal.qurancall.di.Injection
+import com.fikrihaikal.qurancall.ui.alquran.viewpager.surah.SurahViewModel
 import com.fikrihaikal.qurancall.ui.detaildoa.DetailDoaViewModel
+import com.fikrihaikal.qurancall.ui.detailguru.DetailGuruViewModel
 import com.fikrihaikal.qurancall.ui.doa.DoaViewModel
 import com.fikrihaikal.qurancall.ui.gantipassword.GantiPasswordViewModel
 import com.fikrihaikal.qurancall.ui.home.HomeViewModel
 import com.fikrihaikal.qurancall.ui.login.LoginViewModel
+import com.fikrihaikal.qurancall.ui.pilihguru.PilihGuruViewModel
 import com.fikrihaikal.qurancall.ui.profile.ProfileViewModel
 import com.fikrihaikal.qurancall.ui.register.RegisterViewModel
 
@@ -37,6 +40,15 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             }
             modelClass.isAssignableFrom(GantiPasswordViewModel::class.java) ->{
                 GantiPasswordViewModel(Injection.provideRepository(context), Injection.provideDataStore(context)) as T
+            }
+            modelClass.isAssignableFrom(PilihGuruViewModel::class.java) ->{
+                PilihGuruViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(DetailGuruViewModel::class.java) ->{
+                DetailGuruViewModel(Injection.provideRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(SurahViewModel::class.java) ->{
+                SurahViewModel(Injection.provideSurahRepository(context)) as T
             }
 
             else ->throw java.lang.IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

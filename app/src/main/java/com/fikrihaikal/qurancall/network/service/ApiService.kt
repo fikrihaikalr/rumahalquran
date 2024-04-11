@@ -1,7 +1,9 @@
 package com.fikrihaikal.qurancall.network.service
 
 import com.fikrihaikal.qurancall.network.model.response.detaildoa.DetailDoaResponse
+import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
 import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
+import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterBody
@@ -29,21 +31,21 @@ interface ApiService{
 
     @GET("listDoa")
     suspend fun getListDoa(
-        @Header("Authorization") token:String,
-        @Query("page") page:Int? = DEFAULT_PAGE,
     ): DoaResponse
 
     @GET("doa/{id}")
     suspend fun getDetailDoa(
-        @Header("Authorization") token: String,
         @Path("id") id:String,
     ): DetailDoaResponse
 
-    companion object {
-        const val STORIES = "stories"
-        const val DEFAULT_PAGE = 1
-        const val SIZE_PER_PAGE = 10
-    }
+    @GET("guru")
+    suspend fun getListGuru(
+    ):GuruResponse
+
+    @GET("guru/{userId}")
+    suspend fun getDetailGuru(
+        @Path("userId") id:String,
+    ):DetailGuruResponse
 
 
 

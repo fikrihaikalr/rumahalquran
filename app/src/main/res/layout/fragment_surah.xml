@@ -6,58 +6,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.alquran.viewpager.surah.SurahFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_surah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/surah"
-        android:textSize="16sp"
-        android:textColor="@color/biru_gelap"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-    <View
-        android:id="@+id/view1"
-        android:layout_width="51dp"
-        android:layout_height="1dp"
-        android:background="@color/biru_gelap"
-        app:layout_constraintTop_toBottomOf="@id/tv_surah"
-        app:layout_constraintStart_toStartOf="@id/tv_surah"
-        app:layout_constraintEnd_toEndOf="@id/tv_surah"/>
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_juz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/juz"
-        android:textSize="16sp"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toTopOf="@id/tv_surah"
-        app:layout_constraintStart_toEndOf="@id/tv_surah"
-        app:layout_constraintBottom_toBottomOf="@id/tv_surah"/>
-    <View
-        android:id="@+id/view2"
-        android:layout_width="51dp"
-        android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_juz"
-        app:layout_constraintStart_toStartOf="@id/tv_juz"
-        app:layout_constraintEnd_toEndOf="@id/tv_juz"/>
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:queryHint="Cari surat"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/search_view_bg"
-        app:layout_constraintTop_toBottomOf="@id/view1"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_surah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/surah"
+                android:textColor="@color/biru_gelap"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:id="@+id/view1"
+                android:layout_width="51dp"
+                android:layout_height="1dp"
+                android:background="@color/biru_gelap"
+                app:layout_constraintEnd_toEndOf="@id/tv_surah"
+                app:layout_constraintStart_toStartOf="@id/tv_surah"
+                app:layout_constraintTop_toBottomOf="@id/tv_surah" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_juz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/juz"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_surah"
+                app:layout_constraintStart_toEndOf="@id/tv_surah"
+                app:layout_constraintTop_toTopOf="@id/tv_surah" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="51dp"
+                android:layout_height="1dp"
+                app:layout_constraintEnd_toEndOf="@id/tv_juz"
+                app:layout_constraintStart_toStartOf="@id/tv_juz"
+                app:layout_constraintTop_toBottomOf="@id/tv_juz" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/search_view_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                app:queryHint="Cari surat" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_surah"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/search_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/list_item_surah"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ProgressBar
+                android:id="@+id/pb_homeStory"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,26 +1,34 @@
 package com.fikrihaikal.qurancall.ui.doa
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.fikrihaikal.qurancall.data.repository.DataRepository
 import com.fikrihaikal.qurancall.network.model.response.doa.DataItem
+import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
+import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
+import com.fikrihaikal.qurancall.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 
 class DoaViewModel(private val dataRepository: DataRepository) : ViewModel() {
-    private var _listDoa = MutableStateFlow<PagingData<DataItem>>(PagingData.empty())
-    val listDoa = _listDoa.asStateFlow()
+    private val _listDoaResponse = MutableLiveData<Resource<DoaResponse>>(Resource.Loading())
+    val listDoaResponse: LiveData<Resource<DoaResponse>> get() = _listDoaResponse
 
-    fun getAllDoa(){
-        dataRepository.getDoa().cachedIn(viewModelScope).onEach {
-            _listDoa.value = it
-        }.launchIn(viewModelScope)
+    fun getListDoa() {
+        viewModelScope.launch {
+            _listDoaResponse.postValue( dataRepository.getListDoa())
+            Log.d("doa",dataRepository.getListGuru().payload?.data.toString())
+        }
     }
 
 }

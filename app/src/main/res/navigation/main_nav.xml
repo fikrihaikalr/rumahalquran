@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pilihGuruFragment"
+            app:destination="@id/pilihGuruFragment" />
     </fragment>
     <fragment
         android:id="@+id/materiBelajarFragment"
@@ -151,4 +154,30 @@
             android:id="@+id/action_gantiPasswordFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pilihGuruFragment"
+        android:name="com.fikrihaikal.qurancall.ui.pilihguru.PilihGuruFragment"
+        android:label="fragment_pilih_guru"
+        tools:layout="@layout/fragment_pilih_guru" >
+        <action
+            android:id="@+id/action_pilihGuruFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_pilihGuruFragment_to_detailGuruFragment"
+            app:destination="@id/detailGuruFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailGuruFragment"
+        android:name="com.fikrihaikal.qurancall.ui.detailguru.DetailGuruFragment"
+        android:label="fragment_detail_guru"
+        tools:layout="@layout/fragment_detail_guru" >
+        <action
+            android:id="@+id/action_detailGuruFragment_to_pilihGuruFragment"
+            app:destination="@id/pilihGuruFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSurahFragment"
+        android:name="com.fikrihaikal.qurancall.ui.detailsurah.DetailSurahFragment"
+        android:label="fragment_detail_surah"
+        tools:layout="@layout/fragment_detail_surah" />
 </navigation>

@@ -1,10 +1,8 @@
 package com.fikrihaikal.qurancall.ui.doa
 
 
-import android.content.Context
-import android.content.SharedPreferences
+
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +21,6 @@ import com.fikrihaikal.qurancall.ui.doa.adapter.DoaAdapter
 import com.fikrihaikal.qurancall.ui.doa.adapter.LoadingStateAdapter
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
-import com.google.gson.Gson
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -47,36 +43,41 @@ class DoaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapter()
+        setupUI()
+        doaViewModel.getListDoa()
+        setupObservers()
         backToHome()
-        doaViewModel.getAllDoa()
-        observerDoa()
-    }
-    private fun observerDoa() {
-        doaViewModel.listDoa.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach(doaAdapter::submitData).launchIn(viewLifecycleOwner.lifecycleScope)
+
     }
 
-    private fun setAdapter() {
-        doaAdapter = DoaAdapter()
-        binding.rvDoa.adapter = doaAdapter.withLoadStateFooter(footer = LoadingStateAdapter{doaAdapter.retry()})
-        binding.rvDoa.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
-        doaAdapter.addLoadStateListener {
-            when(it.source.refresh){
-                is LoadState.NotLoading ->{
-                    binding.pbHomeStory.visibility = View.GONE
+    private fun setupObservers() {
+        doaViewModel.listDoaResponse.observe(viewLifecycleOwner){resources ->
+            when(resources){
+                is Resource.Success ->{
+                    binding.pbHomeStory.isVisible = false
+                    binding.rvDoa.isVisible = true
+                    val doaList = resources.data?.data ?: emptyList()
+                    doaList.filterNotNull()
+                    doaAdapter.differ.submitList(doaList)
                 }
-                is LoadState.Loading ->{
-                    binding.pbHomeStory.visibility = View.VISIBLE
-                }
-                is LoadState.Error ->{
-                    binding.pbHomeStory.visibility = View.GONE
+                is Resource.Error ->{}
+                is Resource.Loading ->{
+                    binding.pbHomeStory.isVisible = true
+                    binding.rvDoa.isVisible = false
                 }
             }
         }
     }
 
+    private fun setupUI() {
+        doaAdapter = DoaAdapter()
+        binding.rvDoa.apply {
+            adapter = doaAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            setHasFixedSize(true)
+        }
+    }
 
 
     private fun backToHome() {

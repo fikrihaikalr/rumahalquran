@@ -33,7 +33,7 @@ fun getItemMenuList(context:Context):List<ItemMenu>{
         ItemMenu(
             context.getString(R.string.setor_hafalan),
             R.drawable.ic_setor_hafalan,
-            R.id.action_homeFragment_to_materiBelajarFragment
+            R.id.action_homeFragment_to_pilihGuruFragment
         )
     )
     listMenu.add(

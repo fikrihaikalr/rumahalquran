@@ -9,6 +9,8 @@
     <color name="putih">#F0F3F5</color>
     <color name="biru_gelap">#1388A7</color>
     <color name="biru_500">#13AAC7</color>
-    <color name="hijau_persian">#13A795</color>
+    <color name="hijau_persian_500">#13A795</color>
+    <color name="biru_100">#D2F7FB</color>
+    <color name="hijau_persian_700">#10756d</color>
     <color name="merah">#EA546C</color>
 </resources>
