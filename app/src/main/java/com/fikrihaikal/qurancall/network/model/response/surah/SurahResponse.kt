@@ -1,15 +1,20 @@
 package com.fikrihaikal.qurancall.network.model.response.surah
 
-
 import com.google.gson.annotations.SerializedName
 
 data class SurahResponse(
 
-	@field:SerializedName("code")
-	val code: Int,
+	@field:SerializedName("messageResponse")
+	val messageResponse: MessageResponse,
 
 	@field:SerializedName("data")
-	val data: List<DataItem>,
+	val data: List<DataItem>
+)
+
+data class MessageResponse(
+
+	@field:SerializedName("error")
+	val error: Boolean,
 
 	@field:SerializedName("message")
 	val message: String
@@ -17,45 +22,18 @@ data class SurahResponse(
 
 data class DataItem(
 
-	@field:SerializedName("jumlahAyat")
-	val jumlahAyat: Int,
+	@field:SerializedName("surahName")
+	val surahName: String,
 
-	@field:SerializedName("nama")
-	val nama: String,
+	@field:SerializedName("translateId")
+	val translateId: String,
 
-	@field:SerializedName("audioFull")
-	val audioFull: AudioFull,
+	@field:SerializedName("number")
+	val number: String,
 
-	@field:SerializedName("tempatTurun")
-	val tempatTurun: String,
+	@field:SerializedName("audioUrl")
+	val audioUrl: String,
 
-	@field:SerializedName("arti")
-	val arti: String,
-
-	@field:SerializedName("deskripsi")
-	val deskripsi: String,
-
-	@field:SerializedName("nomor")
-	val nomor: Int,
-
-	@field:SerializedName("namaLatin")
-	val namaLatin: String
-)
-
-data class AudioFull(
-
-	@field:SerializedName("01")
-	val jsonMember01: String,
-
-	@field:SerializedName("02")
-	val jsonMember02: String,
-
-	@field:SerializedName("03")
-	val jsonMember03: String,
-
-	@field:SerializedName("04")
-	val jsonMember04: String,
-
-	@field:SerializedName("05")
-	val jsonMember05: String
+	@field:SerializedName("id")
+	val id: String
 )

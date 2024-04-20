@@ -1,4 +1,4 @@
-package com.fikrihaikal.qurancall.network.service
+package com.fikrihaikal.qurancall.network.service.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,14 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig{
     companion object{
-        fun getApiService(): ApiService{
+        fun getApiService(): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://heady-brass-production.up.railway.app/api/")
+                .baseUrl("https://rumah-quran-online-production.up.railway.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentDoaBinding
 import com.fikrihaikal.qurancall.ui.doa.adapter.DoaAdapter
-import com.fikrihaikal.qurancall.ui.doa.adapter.LoadingStateAdapter
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
 import kotlinx.coroutines.flow.launchIn

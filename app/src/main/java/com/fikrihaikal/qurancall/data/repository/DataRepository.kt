@@ -1,13 +1,8 @@
 package com.fikrihaikal.qurancall.data.repository
 
 import android.content.Context
-import android.util.Log
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.fikrihaikal.qurancall.network.model.response.detaildoa.DetailDoaResponse
 import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
-import com.fikrihaikal.qurancall.network.model.response.doa.DataItem
 import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
 import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
@@ -15,11 +10,9 @@ import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterBody
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterResponse
 import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
-import com.fikrihaikal.qurancall.network.service.ApiConfig
-import com.fikrihaikal.qurancall.network.service.ApiService
+import com.fikrihaikal.qurancall.network.service.api.ApiService
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.proceed
-import kotlinx.coroutines.flow.Flow
 
 class DataRepository(private val  apiService: ApiService, private val context: Context){
 

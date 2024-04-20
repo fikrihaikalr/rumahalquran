@@ -7,6 +7,7 @@ import com.fikrihaikal.qurancall.di.Injection
 import com.fikrihaikal.qurancall.ui.alquran.viewpager.surah.SurahViewModel
 import com.fikrihaikal.qurancall.ui.detaildoa.DetailDoaViewModel
 import com.fikrihaikal.qurancall.ui.detailguru.DetailGuruViewModel
+import com.fikrihaikal.qurancall.ui.detailsurah.DetailSurahViewModel
 import com.fikrihaikal.qurancall.ui.doa.DoaViewModel
 import com.fikrihaikal.qurancall.ui.gantipassword.GantiPasswordViewModel
 import com.fikrihaikal.qurancall.ui.home.HomeViewModel
@@ -14,6 +15,7 @@ import com.fikrihaikal.qurancall.ui.login.LoginViewModel
 import com.fikrihaikal.qurancall.ui.pilihguru.PilihGuruViewModel
 import com.fikrihaikal.qurancall.ui.profile.ProfileViewModel
 import com.fikrihaikal.qurancall.ui.register.RegisterViewModel
+import com.fikrihaikal.qurancall.ui.sambungayat.pilihsurah.PilihSurahViewModel
 
 
 class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factory{
@@ -50,6 +52,10 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             modelClass.isAssignableFrom(SurahViewModel::class.java) ->{
                 SurahViewModel(Injection.provideSurahRepository(context)) as T
             }
+            modelClass.isAssignableFrom(DetailSurahViewModel::class.java) ->{
+                DetailSurahViewModel(Injection.provideSurahRepository(context)) as T
+            }
+
 
             else ->throw java.lang.IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
 

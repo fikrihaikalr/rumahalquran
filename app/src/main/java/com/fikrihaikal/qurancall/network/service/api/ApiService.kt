@@ -1,4 +1,4 @@
-package com.fikrihaikal.qurancall.network.service
+package com.fikrihaikal.qurancall.network.service.api
 
 import com.fikrihaikal.qurancall.network.model.response.detaildoa.DetailDoaResponse
 import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
@@ -29,7 +29,7 @@ interface ApiService{
     @GET("user/{userId}")
     suspend fun getUser(@Path("userId") userId: Int): GetUserResponse
 
-    @GET("listDoa")
+    @GET("list")
     suspend fun getListDoa(
     ): DoaResponse
 

@@ -40,7 +40,7 @@ fun getItemMenuList(context:Context):List<ItemMenu>{
         ItemMenu(
             context.getString(R.string.sambung_ayat),
             R.drawable.ic_sambung_ayat,
-            R.id.action_homeFragment_to_materiBelajarFragment
+            R.id.action_homeFragment_to_detailSambungAyatFragment
         )
     )
     return listMenu

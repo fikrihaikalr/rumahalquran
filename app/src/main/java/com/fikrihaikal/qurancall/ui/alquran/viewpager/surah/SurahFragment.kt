@@ -44,18 +44,18 @@ class SurahFragment : Fragment() {
         setupUI()
         viewModel.getListSurah()
         setupObservers()
+
     }
 
     private fun setupObservers() {
-        viewModel.listSurahResponse.observe(viewLifecycleOwner){resource ->
-            when(resource){
+        viewModel.listSurahResponse.observe(viewLifecycleOwner){resources ->
+            when(resources){
                 is Resource.Success ->{
                     binding.pbHomeStory.isVisible = false
                     binding.rvSurah.isVisible = true
-                    val surahList = resource.data?.data ?: emptyList()
-                    surahList.filterNotNull()
+                    val surahList = resources.data?.data
                     surahAdapter.differ.submitList(surahList)
-                    Log.i("Observe Data Surah","$surahList")
+                    Log.i("observeDataSurah", surahList.toString())
                 }
                 is Resource.Error ->{}
                 is Resource.Loading ->{
@@ -70,10 +70,10 @@ class SurahFragment : Fragment() {
         surahAdapter = SurahAdapter()
         binding.rvSurah.apply {
             adapter = surahAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
             setHasFixedSize(true)
         }
     }
+
 
 }

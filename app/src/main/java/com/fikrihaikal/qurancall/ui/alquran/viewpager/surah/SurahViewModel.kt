@@ -12,13 +12,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SurahViewModel(private val surahRepository: SurahRepository) : ViewModel() {
-    private val _listSurahResponse = MutableLiveData<Resource<SurahResponse>>(Resource.Loading())
+    private var _listSurahResponse = MutableLiveData<Resource<SurahResponse>>(Resource.Loading())
     val listSurahResponse: LiveData<Resource<SurahResponse>> get() = _listSurahResponse
 
     fun getListSurah(){
         viewModelScope.launch(Dispatchers.IO) {
-            _listSurahResponse.postValue(surahRepository.getAllSurah())
-            Log.d("surah viewmodel", surahRepository.getAllSurah().payload?.data.toString())
+            _listSurahResponse.postValue(surahRepository.getListSurah())
+            Log.d("surahViewmodel",surahRepository.getListSurah().payload?.data.toString())
         }
     }
 }

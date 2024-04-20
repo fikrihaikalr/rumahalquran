@@ -14,7 +14,7 @@ class SurahConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://equran.id/")
+                .baseUrl("https://rumah-quran-online-production.up.railway.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
