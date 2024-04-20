@@ -16,6 +16,7 @@ import com.fikrihaikal.qurancall.databinding.FragmentSurahBinding
 import com.fikrihaikal.qurancall.ui.alquran.viewpager.surah.adapter.SurahAdapter
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import androidx.appcompat.widget.SearchView
 
 class SurahFragment : Fragment() {
 
@@ -45,7 +46,22 @@ class SurahFragment : Fragment() {
         viewModel.getListSurah()
         setupObservers()
 
+        // Mengatur fungsi pencarian ke SearchView
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                surahAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
     }
+
+
 
     private fun setupObservers() {
         viewModel.listSurahResponse.observe(viewLifecycleOwner){resources ->
@@ -54,7 +70,7 @@ class SurahFragment : Fragment() {
                     binding.pbHomeStory.isVisible = false
                     binding.rvSurah.isVisible = true
                     val surahList = resources.data?.data
-                    surahAdapter.differ.submitList(surahList)
+                    surahAdapter.submitList(surahList!!)
                     Log.i("observeDataSurah", surahList.toString())
                 }
                 is Resource.Error ->{}
@@ -65,7 +81,6 @@ class SurahFragment : Fragment() {
             }
         }
     }
-
     private fun setupUI() {
         surahAdapter = SurahAdapter()
         binding.rvSurah.apply {
@@ -74,6 +89,4 @@ class SurahFragment : Fragment() {
             setHasFixedSize(true)
         }
     }
-
-
 }

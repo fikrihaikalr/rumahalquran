@@ -6,7 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fikrihaikal.qurancall.data.repository.SurahRepository
+import com.fikrihaikal.qurancall.network.model.response.surah.DataItem
+import com.fikrihaikal.qurancall.network.model.response.surah.MessageResponse
 import com.fikrihaikal.qurancall.network.model.response.surah.SurahResponse
+import com.fikrihaikal.qurancall.ui.alquran.viewpager.surah.adapter.SurahAdapter
 import com.fikrihaikal.qurancall.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
