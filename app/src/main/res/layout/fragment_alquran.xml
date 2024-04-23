@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.alquran.AlquranFragment">
+    tools:context=".ui.user.alquran.AlquranFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_alquran"

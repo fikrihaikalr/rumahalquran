@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Qur\'an Call</string>
+    <string name="app_name">Rumah Qur\'an Online</string>
     <string name="login">Masuk</string>
     <string name="assalamu_alaikum_wr_wb_silahkan_daftarkan_n_informasi_anda_untuk_mengakses_akun">Assalamu\'alaikum Wr Wb. Silahkan daftarkan\n informasi Anda untuk mengakses akun</string>
     <string name="input_email">Masukkan Email</string>
@@ -79,4 +79,8 @@
     <string name="chat_teacher">Chat Guru</string>
     <string name="continue_the_verse">Sambung Ayat</string>
     <string name="choose_surah">Pilih Surat</string>
+    <string name="materi_menu">Menu Materi</string>
+    <string name="study_materi">Materi Belajar</string>
+    <string name="add_category">Tambah\nKategori</string>
+    <string name="upload_material">Unggah\nMateri</string>
 </resources>

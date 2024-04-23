@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teacher_main_nav"
+    app:startDestination="@id/homeTeacherFragment">
+
+    <fragment
+        android:id="@+id/homeTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.hometeacher.HomeTeacherFragment"
+        android:label="fragment_home_teacher"
+        tools:layout="@layout/fragment_home_teacher" >
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_materiBelajarTeacherFragment"
+            app:destination="@id/materiBelajarTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/materiBelajarTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.materibelajar.MateriBelajarTeacherFragment"
+        android:label="fragment_materi_belajar_teacher"
+        tools:layout="@layout/fragment_materi_belajar_teacher" >
+        <action
+            android:id="@+id/action_materiBelajarTeacherFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/waktuAdzanTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.waktuadzanteacher.WaktuAdzanTeacherFragment"
+        android:label="fragment_waktu_adzan_teacher"
+        tools:layout="@layout/fragment_waktu_adzan_teacher" />
+    <fragment
+        android:id="@+id/compassTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.compassteacher.CompassTeacherFragment"
+        android:label="fragment_compass_teacher"
+        tools:layout="@layout/fragment_compass_teacher" />
+    <fragment
+        android:id="@+id/alquranTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.alquranteacher.AlquranTeacherFragment"
+        android:label="fragment_alquran_teacher"
+        tools:layout="@layout/fragment_alquran_teacher" />
+    <fragment
+        android:id="@+id/profileTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.profileteacher.ProfileTeacherFragment"
+        android:label="fragment_profile_teacher"
+        tools:layout="@layout/fragment_profile_teacher" />
+    <fragment
+        android:id="@+id/surahTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.alquranteacher.viewpager.surah.SurahTeacherFragment"
+        android:label="fragment_surah_teacher"
+        tools:layout="@layout/fragment_surah_teacher" >
+        <action
+            android:id="@+id/action_surahTeacherFragment_to_detailSurahTeacherFragment"
+            app:destination="@id/detailSurahTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/juzTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.alquranteacher.viewpager.juz.JuzTeacherFragment"
+        android:label="fragment_juz_teacher"
+        tools:layout="@layout/fragment_juz_teacher" />
+    <fragment
+        android:id="@+id/detailSurahTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.detailsurahteacher.DetailSurahTeacherFragment"
+        android:label="fragment_detail_surah_teacher"
+        tools:layout="@layout/fragment_detail_surah_teacher" >
+        <action
+            android:id="@+id/action_detailSurahTeacherFragment_to_surahTeacherFragment"
+            app:destination="@id/surahTeacherFragment" />
+    </fragment>
+</navigation>

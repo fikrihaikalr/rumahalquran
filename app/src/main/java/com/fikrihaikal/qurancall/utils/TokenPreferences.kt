@@ -7,6 +7,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.runBlocking
@@ -17,8 +19,24 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
     private object PreferencesKeys {
         val TOKEN = stringPreferencesKey("token")
         val USER_ID = intPreferencesKey("user_id")
-        val EMAIL = stringPreferencesKey("email")
+        val USER_ROLES = stringPreferencesKey("user_roles")
+    }
 
+    suspend fun saveUserRoles(roles: List<String?>) {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.USER_ROLES] = Gson().toJson(roles)
+        }
+    }
+
+    suspend fun getUserRoles(): List<String>? {
+        val rolesJson = dataStore.data.first()[PreferencesKeys.USER_ROLES]
+        return Gson().fromJson(rolesJson, Array<String>::class.java).toList()
+    }
+
+    suspend fun deleteUserRoles() {
+        dataStore.edit { preferences ->
+            preferences.remove(PreferencesKeys.USER_ROLES)
+        }
     }
 
     suspend fun saveToken(token: String) {
@@ -26,21 +44,13 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
             preferences[PreferencesKeys.TOKEN] = "Bearer $token"
         }
     }
-    suspend fun saveEmail(email:String){
-        dataStore.edit { preferences ->
-            preferences[PreferencesKeys.EMAIL] = email
-        }
-    }
-    suspend fun getEmail(): String?{
-        val preferences = dataStore.data.first()
-        return preferences[PreferencesKeys.EMAIL]
-    }
 
     suspend fun saveUserId(userId:Int){
         dataStore.edit { prefereces ->
             prefereces[PreferencesKeys.USER_ID] = userId
         }
     }
+
 
     suspend fun getUserId():Int?{
         val preferences = dataStore.data.first()
@@ -50,6 +60,8 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
         val preferences = dataStore.data.first()
         return preferences[PreferencesKeys.TOKEN]
     }
+
+
 
     suspend fun deleteToken() {
         dataStore.edit { preferences ->

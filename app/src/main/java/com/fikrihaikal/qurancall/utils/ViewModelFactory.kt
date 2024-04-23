@@ -4,18 +4,22 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fikrihaikal.qurancall.di.Injection
-import com.fikrihaikal.qurancall.ui.alquran.viewpager.surah.SurahViewModel
-import com.fikrihaikal.qurancall.ui.detaildoa.DetailDoaViewModel
-import com.fikrihaikal.qurancall.ui.detailguru.DetailGuruViewModel
-import com.fikrihaikal.qurancall.ui.detailsurah.DetailSurahViewModel
-import com.fikrihaikal.qurancall.ui.doa.DoaViewModel
-import com.fikrihaikal.qurancall.ui.gantipassword.GantiPasswordViewModel
-import com.fikrihaikal.qurancall.ui.home.HomeViewModel
+import com.fikrihaikal.qurancall.ui.teacher.hometeacher.HomeTeacherViewModel
 import com.fikrihaikal.qurancall.ui.login.LoginViewModel
-import com.fikrihaikal.qurancall.ui.pilihguru.PilihGuruViewModel
-import com.fikrihaikal.qurancall.ui.profile.ProfileViewModel
 import com.fikrihaikal.qurancall.ui.register.RegisterViewModel
-import com.fikrihaikal.qurancall.ui.sambungayat.pilihsurah.PilihSurahViewModel
+import com.fikrihaikal.qurancall.ui.teacher.alquranteacher.viewpager.surah.SurahTeacherViewModel
+import com.fikrihaikal.qurancall.ui.teacher.detailsurahteacher.DetailSurahTeacherViewModel
+import com.fikrihaikal.qurancall.ui.teacher.materibelajar.MateriBelajarTeacherViewModel
+import com.fikrihaikal.qurancall.ui.user.alquran.viewpager.surah.SurahViewModel
+import com.fikrihaikal.qurancall.ui.user.detaildoa.DetailDoaViewModel
+import com.fikrihaikal.qurancall.ui.user.detailguru.DetailGuruViewModel
+import com.fikrihaikal.qurancall.ui.user.detailsurah.DetailSurahViewModel
+import com.fikrihaikal.qurancall.ui.user.doa.DoaViewModel
+import com.fikrihaikal.qurancall.ui.user.gantipassword.GantiPasswordViewModel
+import com.fikrihaikal.qurancall.ui.user.home.HomeViewModel
+import com.fikrihaikal.qurancall.ui.user.materibelajar.MateriBelajarViewModel
+import com.fikrihaikal.qurancall.ui.user.pilihguru.PilihGuruViewModel
+import com.fikrihaikal.qurancall.ui.user.profile.ProfileViewModel
 
 
 class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factory{
@@ -54,6 +58,21 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             }
             modelClass.isAssignableFrom(DetailSurahViewModel::class.java) ->{
                 DetailSurahViewModel(Injection.provideSurahRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(MateriBelajarViewModel::class.java) ->{
+                MateriBelajarViewModel(Injection.provideMateriRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(HomeTeacherViewModel::class.java) ->{
+                HomeTeacherViewModel(Injection.provideRepository(context), Injection.provideDataStore(context)) as T
+            }
+            modelClass.isAssignableFrom(MateriBelajarTeacherViewModel::class.java) ->{
+                MateriBelajarTeacherViewModel(Injection.provideMateriRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(SurahTeacherViewModel::class.java) ->{
+                SurahTeacherViewModel(Injection.provideSurahRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(DetailSurahTeacherViewModel::class.java) ->{
+                DetailSurahTeacherViewModel(Injection.provideSurahRepository(context)) as T
             }
 
 

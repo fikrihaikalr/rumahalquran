@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.fikrihaikal.qurancall.data.repository.DataRepository
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
-import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.Dispatchers
@@ -29,10 +28,16 @@ class LoginViewModel(private val dataRepository: DataRepository,private val toke
         }
     }
 
-    fun saveIdNSaveToken(token:String,userId:Int){
+    fun saveIdNSaveToken(token: String, userId: Int){
         viewModelScope.launch(Dispatchers.IO) {
             tokenPreferences.saveToken(token)
             tokenPreferences.saveUserId(userId)
+        }
+    }
+
+    fun saveUserRole(role:List<String?>){
+        viewModelScope.launch(Dispatchers.IO) {
+            tokenPreferences.saveUserRoles(role)
         }
     }
 }
