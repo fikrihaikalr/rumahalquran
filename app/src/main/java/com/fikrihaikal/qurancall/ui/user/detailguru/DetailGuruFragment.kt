@@ -1,5 +1,7 @@
 package com.fikrihaikal.qurancall.ui.user.detailguru
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +16,7 @@ import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruRes
 import com.fikrihaikal.qurancall.utils.Constant
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import java.net.URLEncoder
 
 class DetailGuruFragment : Fragment() {
     private var _binding: FragmentDetailGuruBinding? = null
@@ -40,6 +43,17 @@ class DetailGuruFragment : Fragment() {
         observeData()
     }
 
+    private fun toWhatsApp(phoneNumber:String, template: String) {
+        binding.btnChatGuru.setOnClickListener {
+            val contactNumber = phoneNumber.replace("\\s".toRegex(), "")
+            val message = URLEncoder.encode(template, "UTF-8")
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://wa.me/$contactNumber/?text=$message")
+            startActivity(intent)
+
+        }
+    }
+
     private fun observeData() {
         viewModel.detailGuruResponse.observe(viewLifecycleOwner) {
             when (it) {
@@ -55,6 +69,21 @@ class DetailGuruFragment : Fragment() {
                     binding.pbDetail.isVisible = false
                     it.data?.data?.let { data ->
                         bindView(data)
+                        toWhatsApp(data.numberPhone,"Assalamu'alaikum wa rahmatullahi wa barakatuh, Ustadz/Ustadzah.\n" +
+                                "\n" +
+                                "\n" +
+                                "Dengan penuh hormat, Saya ingin menghubungi Ustadz/Ustadzah untuk melakukan setoran hafalan/konsultasi untuk mendapatkan arahan dan bimbingan dalam pemahaman Al-Quran dan agama. \n" +
+                                "\n" +
+                                "\n" +
+                                "Apakah Ustadz/Ustadzah berkenan untuk berdiskusi lebih lanjut mengenai hal ini?\n" +
+                                "\n" +
+                                "\n" +
+                                "Terimakasih, atas kesempatan ini. \n" +
+                                "\n" +
+                                "\n" +
+                                "-------\n" +
+                                "Regards, \n" +
+                                "  Rumah Quran Online")
                     }
                 }
             }
@@ -63,7 +92,7 @@ class DetailGuruFragment : Fragment() {
 
     private fun bindView(data: Data) {
         binding.tvNameGuru.text = data.username
-        binding.tvNoTelp.text = data.email
+        binding.tvNoTelp.text = data.numberPhone
     }
 }
 

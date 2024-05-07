@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/putih"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hadits Arbain an-Nawawi"
+            android:textColor="@color/hitam"
+            android:textSize="24sp"
+            android:fontFamily="@font/inter_semibold"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/relativeTvOleh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/relativeTitle">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvOleh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oleh"
+            android:textColor="@color/hitam"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_medium"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/relativeTvOleh"
+        android:layout_below="@id/relativeTitle"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imam an-Nawawi"
+            android:textColor="@color/biru_gelap"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_medium"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/relativeTvAuthor">
+
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum, ligula sit amet posuere dignissim, est nisi eleifend libero, eget tempus nisi est eu ante. In varius, justo at condimentum dictum, sapien est fringilla nunc, a tincidunt orci mi at ante. Sed in nunc ut urna fringilla eleifend. Cras bibendum odio quis odio feugiat fringilla. Curabitur ullamcorper tortor a diam vehicula, nec egestas eros scelerisque. Quisque posuere sapien in ipsum venenatis, ut feugiat tellus facilisis. Nulla eleifend nisl facilisis, rhoncus mi in, pellentesque nunc. Nullam non elit ac ex dapibus imperdiet. Sed ac tristique turpis, ut rhoncus dolor. In libero justo, bibendum a ligula eget, scelerisque suscipit purus. Sed porta bibendum purus, ac viverra."
+            android:textColor="@color/hitam"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,4 +1,4 @@
-package com.fikrihaikal.qurancall.ui.register
+package com.fikrihaikal.qurancall.ui.auth.register
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

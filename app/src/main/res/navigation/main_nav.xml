@@ -7,16 +7,20 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.fikrihaikal.qurancall.ui.splashscreen.SplashScreenFragment"
+        android:name="com.fikrihaikal.qurancall.ui.auth.splashscreen.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.fikrihaikal.qurancall.ui.login.LoginFragment"
+        android:name="com.fikrihaikal.qurancall.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -25,11 +29,20 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.fikrihaikal.qurancall.ui.register.RegisterFragment"
+        android:name="com.fikrihaikal.qurancall.ui.auth.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.fikrihaikal.qurancall.ui.auth.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

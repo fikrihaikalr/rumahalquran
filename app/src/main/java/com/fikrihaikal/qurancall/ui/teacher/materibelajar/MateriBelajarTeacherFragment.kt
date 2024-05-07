@@ -66,7 +66,9 @@ class MateriBelajarTeacherFragment : Fragment() {
     }
 
     private fun setupUI() {
-        materiTeacherAdapter = MenuMateriTeacherAdapter()
+        materiTeacherAdapter = MenuMateriTeacherAdapter{materiId ->
+            viewModel.deleteMateriById(materiId)
+        }
         binding.rvMateri.apply {
             adapter = materiTeacherAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)

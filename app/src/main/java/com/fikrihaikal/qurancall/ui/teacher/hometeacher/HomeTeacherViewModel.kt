@@ -17,7 +17,7 @@ class HomeTeacherViewModel(private val dataRepository: DataRepository,private va
 
     fun getUser(){
         viewModelScope.launch(Dispatchers.IO) {
-            _userResponse.postValue(tokenPreferences.getUserId()?.let { dataRepository.getUser(it) })
+            _userResponse.postValue(dataRepository.getUser(tokenPreferences.getToken().orEmpty(), tokenPreferences.getUserId()!!))
         }
     }
 }

@@ -26,35 +26,36 @@ class DataRepository(private val  apiService: ApiService, private val context: C
             apiService.postRegist(registerBody)
         }
 
-    suspend fun getUser(userId:Int):Resource<GetUserResponse> =
+    suspend fun getUser(token:String,userId:Int):Resource<GetUserResponse> =
         proceed {
-            apiService.getUser(userId)
+            apiService.getUser(token,userId)
         }
 
-    suspend fun getListDoa():Resource<DoaResponse> =
+    suspend fun getListDoa(token:String):Resource<DoaResponse> =
         proceed {
-            apiService.getListDoa()
+            apiService.getListDoa(token)
         }
 
-    suspend fun getDetailDoa(id:String): Resource<DetailDoaResponse> =
+    suspend fun getDetailDoa(token: String,id:String): Resource<DetailDoaResponse> =
         proceed {
-            apiService.getDetailDoa(id)
+            apiService.getDetailDoa(token,id)
         }
 
-    suspend fun getListGuru():Resource<GuruResponse> =
+    suspend fun getListGuru(token: String):Resource<GuruResponse> =
         proceed {
-            apiService.getListGuru()
+            apiService.getListGuru(token)
         }
-    suspend fun getDetailGuru(id:String): Resource<DetailGuruResponse> =
+    suspend fun getDetailGuru(token: String,id:String): Resource<DetailGuruResponse> =
         proceed {
-            apiService.getDetailGuru(id)
+            apiService.getDetailGuru(token,id)
         }
+
+}
+
 //    suspend fun getDetailGuru(id: String):Resource<DetailGuruResponse> =
 //        proceed {
 //            ApiConfig.getApiService().getDetailGuru(id)
 //        }
-
-}
 
 //suspend fun getListDoa():Resource<DoaResponse> {
 //    Log.d("repo doa",apiService.getListDoa().data.toString())

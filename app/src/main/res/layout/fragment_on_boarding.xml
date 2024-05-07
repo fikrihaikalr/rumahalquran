@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/putih"
+    app:layoutDescription="@xml/fragment_on_boarding_scene"
+    tools:context=".ui.auth.onboarding.OnBoardingFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_name" />
+
+    <ImageView
+        android:id="@+id/logoMenu1"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:src="@drawable/onboard_started"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="411dp" />
+
+    <TextView
+        android:id="@+id/titleMenu1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Rute Pendidikan alqur'an\n yang mendalam"
+        android:textSize="24sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_bold"
+        app:layout_constraintEnd_toEndOf="@+id/logoMenu1"
+        app:layout_constraintStart_toStartOf="@+id/logoMenu1"
+        app:layout_constraintTop_toBottomOf="@+id/logoMenu1" />
+
+    <TextView
+        android:id="@+id/descMenu1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Eksplorasi mendalam nilai-nilai Al-Qur'an\n untuk pertumbuhan spiritual yang holistik"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/abu_abu"
+        android:fontFamily="@font/inter_medium"
+        app:layout_constraintEnd_toEndOf="@+id/titleMenu1"
+        app:layout_constraintStart_toStartOf="@+id/titleMenu1"
+        app:layout_constraintTop_toBottomOf="@+id/titleMenu1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_start"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Mulai Pelajari"
+        app:cornerRadius="48dp"
+        android:backgroundTint="@color/biru_muda"
+        app:layout_constraintTop_toBottomOf="@id/descMenu1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/logoMenu2"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        android:src="@drawable/onboard_first" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Mari belajar alqur'an untuk\n tingkatkan spiritual anda"
+        android:textSize="24dp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_bold"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/logoMenu2"
+        app:layout_constraintStart_toStartOf="@id/logoMenu2"
+        app:layout_constraintEnd_toEndOf="@id/logoMenu2"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ikuti perjalanan belajar Al-Qur'an untuk\n meningkatkan dimensi spiritual Anda\n secara mendalam."
+        android:textColor="@color/abu_abu"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter_medium"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/titleMenu2"
+        app:layout_constraintStart_toStartOf="@id/titleMenu2"
+        app:layout_constraintEnd_toEndOf="@id/titleMenu2"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/hitam"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginBottom="37dp"
+        app:layout_constraintTop_toBottomOf="@id/descMenu2"
+        app:layout_constraintStart_toStartOf="@id/descMenu2"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/tv_skip"
+        app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+        app:layout_constraintEnd_toEndOf="@id/tv_skip"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/tv_skip"
+        app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+        app:layout_constraintEnd_toEndOf="@id/tv_skip"/>
+
+    <ImageView
+        android:id="@+id/logoMenu3"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        android:src="@drawable/onboard_second" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Pelajari semua materi dan\n pembelajaran Alqur'an\n untuk memperkaya diri"
+        android:textSize="24dp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_bold"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/logoMenu3"
+        app:layout_constraintStart_toStartOf="@id/logoMenu3"
+        app:layout_constraintEnd_toEndOf="@id/logoMenu3"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Telusuri setiap materi dan pembelajaran Al-\n Qur'an untuk memperdalam pengetahuan\n dan memperkaya diri secara spiritual."
+        android:textColor="@color/abu_abu"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter_medium"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/titleMenu3"
+        app:layout_constraintStart_toStartOf="@id/titleMenu3"
+        app:layout_constraintEnd_toEndOf="@id/titleMenu3"/>
+
+    <ImageView
+        android:id="@+id/logoMenu4"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        android:src="@drawable/onboard_third" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Temukan kebenaran ilahi,\n mari kita belajar Al-Qur'an\n bersama-sama"
+        android:textSize="24dp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_bold"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/logoMenu4"
+        app:layout_constraintStart_toStartOf="@id/logoMenu4"
+        app:layout_constraintEnd_toEndOf="@id/logoMenu4"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Temukan kebenaran ilahi melalui\n pembelajaran Al-Qur'an bersama-sama."
+        android:textColor="@color/abu_abu"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter_medium"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/titleMenu4"
+        app:layout_constraintStart_toStartOf="@id/titleMenu4"
+        app:layout_constraintEnd_toEndOf="@id/titleMenu4"/>
+
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_materiBelajarFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_materiBelajarFragment_to_subMenuMateriFragment"
+            app:destination="@id/subMenuMateriFragment" />
     </fragment>
     <fragment
         android:id="@+id/waktuAdzanFragment"
@@ -174,4 +177,25 @@
         android:name="com.fikrihaikal.qurancall.ui.user.sambungayat.detailsambungayat.DetailSambungAyatFragment"
         android:label="fragment_detail_sambung_ayat"
         tools:layout="@layout/fragment_detail_sambung_ayat" />
+    <fragment
+        android:id="@+id/subMenuMateriFragment"
+        android:name="com.fikrihaikal.qurancall.ui.user.listsubmateri.SubMenuMateriFragment"
+        android:label="fragment_sub_menu_materi"
+        tools:layout="@layout/fragment_sub_menu_materi" >
+        <action
+            android:id="@+id/action_subMenuMateriFragment_to_materiBelajarFragment"
+            app:destination="@id/materiBelajarFragment" />
+        <action
+            android:id="@+id/action_subMenuMateriFragment_to_detailContentFragment"
+            app:destination="@id/detailContentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailContentFragment"
+        android:name="com.fikrihaikal.qurancall.ui.user.detailmateri.DetailContentFragment"
+        android:label="fragment_detail_content"
+        tools:layout="@layout/fragment_detail_content" >
+        <action
+            android:id="@+id/action_detailContentFragment_to_subMenuMateriFragment"
+            app:destination="@id/subMenuMateriFragment" />
+    </fragment>
 </navigation>

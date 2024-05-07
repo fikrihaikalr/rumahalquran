@@ -3,20 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/putih"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.splashscreen.SplashScreenFragment">
+    tools:context=".ui.auth.splashscreen.SplashScreenFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/logo_splash"
-        android:layout_width="157dp"
-        android:layout_height="32dp"
-        android:src="@drawable/logo_splash"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_splash_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome."
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_bold"
+        android:textSize="40sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rumah Quran Online"
+        android:textSize="16sp"
+        android:textColor="@color/biru_gelap"
+        android:fontFamily="@font/inter_bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_splash_welcome"
+        app:layout_constraintEnd_toEndOf="@id/tv_splash_welcome"
+        app:layout_constraintStart_toStartOf="@id/tv_splash_welcome"/>
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="100dp"
         android:layout_height="70dp"

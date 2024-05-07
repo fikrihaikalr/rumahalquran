@@ -9,14 +9,14 @@ import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.proceed
 
 class SurahRepository(private val surahService: SurahService,private val context:Context){
-    suspend fun getListSurah():Resource<SurahResponse> =
+    suspend fun getListSurah(token:String):Resource<SurahResponse> =
         proceed {
-            surahService.getAllSurah()
+            surahService.getAllSurah(token)
         }
-    suspend fun getDetailSurah(id:String):Resource<DetailSurahResponse> =
+    suspend fun getDetailSurah(token:String,id:String):Resource<DetailSurahResponse> =
         proceed {
             Log.d("nomorsurahrepository",id)
-            val response = surahService.getDetailSurah(id)
+            val response = surahService.getDetailSurah(token,id)
             Log.d("surahRepo",response.toString())
             response
         }

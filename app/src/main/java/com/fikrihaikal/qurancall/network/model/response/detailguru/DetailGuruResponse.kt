@@ -11,10 +11,22 @@ data class DetailGuruResponse(
 	val data: Data
 )
 
+data class MessageResponse(
+
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String
+)
+
 data class Data(
 
 	@field:SerializedName("photoPath")
 	val photoPath: Any,
+
+	@field:SerializedName("numberPhone")
+	val numberPhone: String,
 
 	@field:SerializedName("roles")
 	val roles: List<String>,
@@ -26,14 +38,8 @@ data class Data(
 	val email: String,
 
 	@field:SerializedName("username")
-	val username: String
-)
+	val username: String,
 
-data class MessageResponse(
-
-	@field:SerializedName("error")
-	val error: Boolean,
-
-	@field:SerializedName("message")
-	val message: String
+	@field:SerializedName("status")
+	val status: String
 )

@@ -25,21 +25,21 @@ fun getItemMenuTeacherList(context: Context):List<ItemMenuTeacher>{
         ItemMenuTeacher(
             context.getString(R.string.collection_of_prayers),
             R.drawable.ic_kumpulan_doa,
-            R.id.action_homeTeacherFragment_to_materiBelajarTeacherFragment
+            R.id.action_homeTeacherFragment_to_doaTeacherFragment
         )
     )
     listMenuTeacher.add(
         ItemMenuTeacher(
             context.getString(R.string.add_category),
             R.drawable.ic_tambah_kategori,
-            R.id.action_homeTeacherFragment_to_materiBelajarTeacherFragment
+            R.id.action_homeTeacherFragment_to_tambahKategoriFragment
         )
     )
     listMenuTeacher.add(
         ItemMenuTeacher(
             context.getString(R.string.upload_material),
             R.drawable.ic_unggah_materi,
-            R.id.action_homeTeacherFragment_to_materiBelajarTeacherFragment
+            R.id.action_homeTeacherFragment_to_uploadMateriFragment
         )
     )
 

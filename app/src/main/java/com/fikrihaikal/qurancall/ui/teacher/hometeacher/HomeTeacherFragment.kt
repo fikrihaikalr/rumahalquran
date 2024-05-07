@@ -74,7 +74,7 @@ class HomeTeacherFragment : Fragment() {
 
     private fun toSetting() {
         binding.icSetting.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeTeacherFragment_to_settingFragment)
+            findNavController().navigate(R.id.action_homeTeacherFragment_to_settingTeacherFragment)
         }
     }
 

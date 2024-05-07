@@ -12,6 +12,7 @@ import com.fikrihaikal.qurancall.network.model.response.doa.DataItem
 import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
 import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
 import com.fikrihaikal.qurancall.utils.Resource
+import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,14 +21,14 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 
-class DoaViewModel(private val dataRepository: DataRepository) : ViewModel() {
+class DoaViewModel(private val dataRepository: DataRepository,private val tokenPreferences: TokenPreferences) : ViewModel() {
     private val _listDoaResponse = MutableLiveData<Resource<DoaResponse>>(Resource.Loading())
     val listDoaResponse: LiveData<Resource<DoaResponse>> get() = _listDoaResponse
 
     fun getListDoa() {
         viewModelScope.launch {
-            _listDoaResponse.postValue( dataRepository.getListDoa())
-            Log.d("doa",dataRepository.getListGuru().payload?.data.toString())
+            _listDoaResponse.postValue( dataRepository.getListDoa(tokenPreferences.getToken().orEmpty()))
+            Log.d("doa",dataRepository.getListDoa(tokenPreferences.getToken().orEmpty()).payload?.data.toString())
         }
     }
 

@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/putih"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.pilihguru.PilihGuruFragment">
+    tools:context=".ui.user.pilihguru.PilihGuruFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_back"

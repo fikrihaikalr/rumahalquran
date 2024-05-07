@@ -13,6 +13,18 @@
         <action
             android:id="@+id/action_homeTeacherFragment_to_materiBelajarTeacherFragment"
             app:destination="@id/materiBelajarTeacherFragment" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_settingTeacherFragment"
+            app:destination="@id/settingTeacherFragment" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_doaTeacherFragment"
+            app:destination="@id/doaTeacherFragment" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_uploadMateriFragment"
+            app:destination="@id/uploadMateriFragment" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_tambahKategoriFragment"
+            app:destination="@id/tambahKategoriFragment" />
     </fragment>
     <fragment
         android:id="@+id/materiBelajarTeacherFragment"
@@ -22,6 +34,9 @@
         <action
             android:id="@+id/action_materiBelajarTeacherFragment_to_homeTeacherFragment"
             app:destination="@id/homeTeacherFragment" />
+        <action
+            android:id="@+id/action_materiBelajarTeacherFragment_to_subMenuMateriTeacherFragment"
+            app:destination="@id/subMenuMateriTeacherFragment" />
     </fragment>
     <fragment
         android:id="@+id/waktuAdzanTeacherFragment"
@@ -42,7 +57,14 @@
         android:id="@+id/profileTeacherFragment"
         android:name="com.fikrihaikal.qurancall.ui.teacher.profileteacher.ProfileTeacherFragment"
         android:label="fragment_profile_teacher"
-        tools:layout="@layout/fragment_profile_teacher" />
+        tools:layout="@layout/fragment_profile_teacher" >
+        <action
+            android:id="@+id/action_profileTeacherFragment_to_gantiFotoTeacherFragment"
+            app:destination="@id/gantiFotoTeacherFragment" />
+        <action
+            android:id="@+id/action_profileTeacherFragment_to_gantiPasswordTeacherFragment"
+            app:destination="@id/gantiPasswordTeacherFragment" />
+    </fragment>
     <fragment
         android:id="@+id/surahTeacherFragment"
         android:name="com.fikrihaikal.qurancall.ui.teacher.alquranteacher.viewpager.surah.SurahTeacherFragment"
@@ -65,5 +87,92 @@
         <action
             android:id="@+id/action_detailSurahTeacherFragment_to_surahTeacherFragment"
             app:destination="@id/surahTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.setting.SettingTeacherFragment"
+        android:label="fragment_setting_teacher"
+        tools:layout="@layout/fragment_setting_teacher" >
+        <action
+            android:id="@+id/action_settingTeacherFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiFotoTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.gantifototeacher.GantiFotoTeacherFragment"
+        android:label="fragment_ganti_foto_teacher"
+        tools:layout="@layout/fragment_ganti_foto_teacher" >
+        <action
+            android:id="@+id/action_gantiFotoTeacherFragment_to_profileTeacherFragment"
+            app:destination="@id/profileTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiPasswordTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.gantipasswordteacher.GantiPasswordTeacherFragment"
+        android:label="fragment_ganti_password_teacher"
+        tools:layout="@layout/fragment_ganti_password_teacher" >
+        <action
+            android:id="@+id/action_gantiPasswordTeacherFragment_to_profileTeacherFragment"
+            app:destination="@id/profileTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doaTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.doateacher.DoaTeacherFragment"
+        android:label="fragment_doa_teacher"
+        tools:layout="@layout/fragment_doa_teacher" >
+        <action
+            android:id="@+id/action_doaTeacherFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+        <action
+            android:id="@+id/action_doaTeacherFragment_to_detailDoaTeacherFragment"
+            app:destination="@id/detailDoaTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailDoaTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.detaildoateacher.DetailDoaTeacherFragment"
+        android:label="fragment_detail_doa_teacher"
+        tools:layout="@layout/fragment_detail_doa_teacher" >
+        <action
+            android:id="@+id/action_detailDoaTeacherFragment_to_doaTeacherFragment"
+            app:destination="@id/doaTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahKategoriFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.tambahkategory.TambahKategoriFragment"
+        android:label="fragment_tambah_kategori"
+        tools:layout="@layout/fragment_tambah_kategori" >
+        <action
+            android:id="@+id/action_tambahKategoriFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadMateriFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.uploadmateri.UploadMateriFragment"
+        android:label="fragment_upload_materi"
+        tools:layout="@layout/fragment_upload_materi" >
+        <action
+            android:id="@+id/action_uploadMateriFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subMenuMateriTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.submateriteacher.SubMenuMateriTeacherFragment"
+        android:label="fragment_sub_menu_materi_teacher"
+        tools:layout="@layout/fragment_sub_menu_materi_teacher" >
+        <action
+            android:id="@+id/action_subMenuMateriTeacherFragment_to_materiBelajarTeacherFragment"
+            app:destination="@id/materiBelajarTeacherFragment" />
+        <action
+            android:id="@+id/action_subMenuMateriTeacherFragment_to_detailContentTeacherFragment"
+            app:destination="@id/detailContentTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailContentTeacherFragment"
+        android:name="com.fikrihaikal.qurancall.ui.teacher.detailmateriteacher.DetailContentTeacherFragment"
+        android:label="fragment_detail_content_teacher"
+        tools:layout="@layout/fragment_detail_content_teacher" >
+        <action
+            android:id="@+id/action_detailContentTeacherFragment_to_subMenuMateriTeacherFragment"
+            app:destination="@id/subMenuMateriTeacherFragment" />
     </fragment>
 </navigation>

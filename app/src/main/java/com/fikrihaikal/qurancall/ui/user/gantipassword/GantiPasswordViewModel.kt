@@ -17,7 +17,7 @@ class GantiPasswordViewModel(private val dataRepository: DataRepository,private 
 
     fun getUser(){
         viewModelScope.launch(Dispatchers.IO) {
-            _editProfile.postValue(tokenPreferences.getUserId()?.let { dataRepository.getUser(it) })
+            _editProfile.postValue(dataRepository.getUser(tokenPreferences.getToken().orEmpty(), tokenPreferences.getUserId()!!))
         }
     }
 }

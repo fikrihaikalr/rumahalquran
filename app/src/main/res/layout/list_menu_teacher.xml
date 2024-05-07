@@ -9,6 +9,7 @@
     android:clickable="true"
     android:contentDescription="Parent item menu"
     android:focusable="true"
+    android:background="@color/putih"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:ignore="HardcodedText">

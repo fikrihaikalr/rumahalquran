@@ -11,19 +11,13 @@ data class GuruResponse(
 	val data: List<DataItem>
 )
 
-data class MessageResponse(
-
-	@field:SerializedName("error")
-	val error: Boolean,
-
-	@field:SerializedName("message")
-	val message: String
-)
-
 data class DataItem(
 
 	@field:SerializedName("photoPath")
 	val photoPath: Any,
+
+	@field:SerializedName("numberPhone")
+	val numberPhone: String,
 
 	@field:SerializedName("roles")
 	val roles: List<String>,
@@ -35,5 +29,17 @@ data class DataItem(
 	val email: String,
 
 	@field:SerializedName("username")
-	val username: String
+	val username: String,
+
+	@field:SerializedName("status")
+	val status: String
+)
+
+data class MessageResponse(
+
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String
 )

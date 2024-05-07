@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/putih"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.user.detailmateri.DetailContentFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/relativeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_back_24" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/relativeHeader"
+        android:layout_marginHorizontal="20dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hadits Arbain an-Nawawi"
+            android:textColor="@color/hitam"
+            android:textSize="24sp"
+            android:fontFamily="@font/inter_semibold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTvOleh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/relativeTitle">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvOleh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oleh"
+            android:textColor="@color/hitam"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_medium"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/relativeTvOleh"
+        android:layout_below="@id/relativeTitle"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imam an-Nawawi"
+            android:textColor="@color/biru_gelap"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_medium"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeTvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/relativeTvAuthor">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_regular"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum, ligula sit amet posuere dignissim, est nisi eleifend libero, eget tempus nisi est eu ante. In varius, justo at condimentum dictum, sapien est fringilla nunc, a tincidunt orci mi at ante. Sed in nunc ut urna fringilla eleifend. Cras bibendum odio quis odio feugiat fringilla. Curabitur ullamcorper tortor a diam vehicula, nec egestas eros scelerisque. Quisque posuere sapien in ipsum venenatis, ut feugiat tellus facilisis. Nulla eleifend nisl facilisis, rhoncus mi in, pellentesque nunc. Nullam non elit ac ex dapibus imperdiet. Sed ac tristique turpis, ut rhoncus dolor. In libero justo, bibendum a ligula eget, scelerisque suscipit purus. Sed porta bibendum purus, ac viverra.        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum, ligula sit amet posuere dignissim, est nisi eleifend libero, eget tempus nisi est eu ante. In varius, justo at condimentum dictum, sapien est fringilla nunc, a tincidunt orci mi at ante. Sed in nunc ut urna fringilla eleifend. Cras bibendum odio quis odio feugiat fringilla. Curabitur ullamcorper tortor a diam vehicula, nec egestas eros scelerisque. Quisque posuere sapien in ipsum venenatis, ut feugiat tellus facilisis. Nulla eleifend nisl facilisis, rhoncus mi in, pellentesque nunc. Nullam non elit ac ex dapibus imperdiet. Sed ac tristique turpis, ut rhoncus dolor. In libero justo, bibendum a ligula eget, scelerisque suscipit purus. Sed porta bibendum purus, ac viverra.       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum, ligula sit amet posuere dignissim, est nisi eleifend libero, eget tempus nisi est eu ante. In varius, justo at condimentum dictum, sapien est fringilla nunc, a tincidunt orci mi at ante. Sed in nunc ut urna fringilla eleifend. Cras bibendum odio quis odio feugiat fringilla. Curabitur ullamcorper tortor a diam vehicula, nec egestas eros scelerisque. Quisque posuere sapien in ipsum venenatis, ut feugiat tellus facilisis. Nulla eleifend nisl facilisis, rhoncus mi in, pellentesque nunc. Nullam non elit ac ex dapibus imperdiet. Sed ac tristique turpis, ut rhoncus dolor. In libero justo, bibendum a ligula eget, scelerisque suscipit purus. Sed porta bibendum purus, ac viverra."
+            android:justificationMode="inter_word"/>
+
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</ScrollView>
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/relativeRvDetailContent"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/relativeTitle"-->
+    <!--        android:layout_marginTop="16dp">-->
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/rvDetailContent"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            tools:listitem="@layout/list_item_content_materi"/>-->
+    <!--    </RelativeLayout>-->
+    <!--        <me.biubiubiu.justifytext.library.JustifyTextView-->
+    <!--            android:id="@+id/tv_content"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum, ligula sit amet posuere dignissim, est nisi eleifend libero, eget tempus nisi est eu ante. In varius, justo at condimentum dictum, sapien est fringilla nunc, a tincidunt orci mi at ante. Sed in nunc ut urna fringilla eleifend. Cras bibendum odio quis odio feugiat fringilla. Curabitur ullamcorper tortor a diam vehicula, nec egestas eros scelerisque. Quisque posuere sapien in ipsum venenatis, ut feugiat tellus facilisis. Nulla eleifend nisl facilisis, rhoncus mi in, pellentesque nunc. Nullam non elit ac ex dapibus imperdiet. Sed ac tristique turpis, ut rhoncus dolor. In libero justo, bibendum a ligula eget, scelerisque suscipit purus. Sed porta bibendum purus, ac viverra."-->
+    <!--            android:textColor="@color/hitam"-->
+    <!--            android:textSize="12sp"-->
+    <!--            android:fontFamily="@font/inter_regular"/>-->

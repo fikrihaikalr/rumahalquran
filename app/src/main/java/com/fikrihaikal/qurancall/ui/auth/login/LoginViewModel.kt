@@ -1,4 +1,4 @@
-package com.fikrihaikal.qurancall.ui.login
+package com.fikrihaikal.qurancall.ui.auth.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val dataRepository: DataRepository,private val tokenPreferences: TokenPreferences) : ViewModel() {
     private val _login = MutableLiveData<Resource<LoginResponse>>()
     val login: LiveData<Resource<LoginResponse>> get() = _login
+
+
 
     fun login(loginBody:LoginBody){
         _login.postValue(Resource.Loading())

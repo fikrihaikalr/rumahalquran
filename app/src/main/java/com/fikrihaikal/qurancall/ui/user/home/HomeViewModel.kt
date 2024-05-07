@@ -22,7 +22,7 @@ class HomeViewModel(private val dataRepository: DataRepository,private val token
 
     fun getUser(){
         viewModelScope.launch(Dispatchers.IO) {
-            _userResponse.postValue(tokenPreferences.getUserId()?.let { dataRepository.getUser(it)})
+            _userResponse.postValue(dataRepository.getUser(tokenPreferences.getToken().orEmpty(), tokenPreferences.getUserId()!!))
         }
     }
 }

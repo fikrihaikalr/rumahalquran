@@ -51,8 +51,8 @@ class MateriBelajarFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progressBar.isVisible = false
                     binding.rvMateri.isVisible = true
-                    val menuMateriList = resources.payload?.data
-                    materiAdapter.differ.submitList(menuMateriList)
+                    val menuMateriList = resources.data?.data
+                    materiAdapter.differ.submitList(menuMateriList!!)
                     Log.i("observeDataMenuMateri",menuMateriList.toString())
                 }
             }

@@ -1,12 +1,15 @@
-package com.fikrihaikal.qurancall.ui.login
+package com.fikrihaikal.qurancall.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,6 +44,10 @@ class LoginFragment : Fragment() {
         observeLogin()
         onBackPressed()
     }
+
+
+
+
 
     private fun onBackPressed(){
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :

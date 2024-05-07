@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/putih"
     tools:context=".ui.user.materibelajar.MateriBelajarFragment">
 
     <RelativeLayout
@@ -64,6 +65,7 @@
             android:id="@+id/rvMateri"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             tools:listitem="@layout/list_item_menu_materi"/>
     </RelativeLayout>
     <ProgressBar

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sambungayat.detailsambungayat.DetailSambungAyatFragment">
+    android:background="@color/putih"
+    tools:context=".ui.user.sambungayat.detailsambungayat.DetailSambungAyatFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

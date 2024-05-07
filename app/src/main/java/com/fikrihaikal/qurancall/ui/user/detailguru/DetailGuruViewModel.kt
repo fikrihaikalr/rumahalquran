@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class DetailGuruViewModel(private val dataRepository: DataRepository) : ViewModel() {
+class DetailGuruViewModel(private val dataRepository: DataRepository,private val tokenPreferences: TokenPreferences) : ViewModel() {
     private val _detailGuruResponse = MutableLiveData<Resource<DetailGuruResponse>>()
     val detailGuruResponse: LiveData<Resource<DetailGuruResponse>> get() = _detailGuruResponse
 
@@ -24,22 +24,39 @@ class DetailGuruViewModel(private val dataRepository: DataRepository) : ViewMode
 //            _detailGuruResponse.value = response
 //        }
 //    }
-    fun getDetail(id: String) = viewModelScope.launch(Dispatchers.IO) {
-        _detailGuruResponse.postValue(Resource.Loading())
-        try {
-            val response = dataRepository.getDetailGuru(id)
-            viewModelScope.launch(Dispatchers.Main) {
-                if (response.payload != null) {
-                    _detailGuruResponse.postValue(Resource.Success(response.payload))
-                } else {
-                    _detailGuruResponse.postValue(Resource.Error(response.exception, "Error"))
-
-                }
-            }
-        } catch (e: Exception) {
-            viewModelScope.launch(Dispatchers.Main) {
-                _detailGuruResponse.postValue(Resource.Error(e, "Error"))
+//    fun getDetail(id: String) = viewModelScope.launch(Dispatchers.IO) {
+//        _detailGuruResponse.postValue(Resource.Loading())
+//        try {
+//            val response = dataRepository.getDetailGuru(id,tokenPreferences.getToken().orEmpty())
+//            viewModelScope.launch(Dispatchers.Main) {
+//                if (response.payload != null) {
+//                    _detailGuruResponse.postValue(Resource.Success(response.payload))
+//                } else {
+//                    _detailGuruResponse.postValue(Resource.Error(response.exception, "Error"))
+//
+//                }
+//            }
+//        } catch (e: Exception) {
+//            viewModelScope.launch(Dispatchers.Main) {
+//                _detailGuruResponse.postValue(Resource.Error(e, "Error"))
+//            }
+//        }
+//    }
+fun getDetail(id:String) = viewModelScope.launch(Dispatchers.IO) {
+    _detailGuruResponse.postValue(Resource.Loading())
+    try {
+        val response = tokenPreferences.getToken()?.let { dataRepository.getDetailGuru(it,id) }
+        viewModelScope.launch(Dispatchers.Main) {
+            if (response!!.payload != null){
+                _detailGuruResponse.postValue(Resource.Success(response.payload))
+            }else{
+                _detailGuruResponse.postValue(Resource.Error(response.exception,"Error"))
             }
         }
+    }catch (e:Exception){
+        viewModelScope.launch(Dispatchers.Main) {
+            _detailGuruResponse.postValue(Resource.Error(e,"Error"))
+        }
     }
+}
 }

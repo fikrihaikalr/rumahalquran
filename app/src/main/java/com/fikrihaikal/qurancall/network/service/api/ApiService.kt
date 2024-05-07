@@ -27,23 +27,30 @@ interface ApiService{
     ): LoginResponse
 
     @GET("user/{userId}")
-    suspend fun getUser(@Path("userId") userId: Int): GetUserResponse
+    suspend fun getUser(
+        @Header("Authorization") authorization:String,
+        @Path("userId") userId: Int
+    ): GetUserResponse
 
     @GET("list")
     suspend fun getListDoa(
+        @Header("Authorization") authorization:String
     ): DoaResponse
 
     @GET("doa/{id}")
     suspend fun getDetailDoa(
+        @Header("Authorization") authorization:String,
         @Path("id") id:String,
     ): DetailDoaResponse
 
     @GET("guru")
     suspend fun getListGuru(
+        @Header("Authorization") authorization: String
     ):GuruResponse
 
     @GET("guru/{userId}")
     suspend fun getDetailGuru(
+        @Header("Authorization") authorization: String,
         @Path("userId") id:String,
     ):DetailGuruResponse
 

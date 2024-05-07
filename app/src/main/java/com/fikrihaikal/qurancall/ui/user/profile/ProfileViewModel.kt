@@ -17,7 +17,7 @@ class ProfileViewModel(private val dataRepository: DataRepository,private val to
 
     fun getUser(){
       viewModelScope.launch(Dispatchers.IO){
-          _profile.postValue(tokenPreferences.getUserId()?.let { dataRepository.getUser(it) })
+          _profile.postValue(dataRepository.getUser(tokenPreferences.getToken().orEmpty(), tokenPreferences.getUserId()!!))
       }
     }
     fun deleteIdNDeleteToken(){

@@ -1,15 +1,21 @@
 package com.fikrihaikal.qurancall.ui.teacher.materibelajar.adapter
 
+import android.app.AlertDialog
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.fikrihaikal.qurancall.databinding.ListItemMenuMateriBinding.inflate
-import com.fikrihaikal.qurancall.databinding.ListItemMenuMateriBinding
+import com.fikrihaikal.qurancall.R
+import com.fikrihaikal.qurancall.databinding.ListItemMenuMateriTeacherBinding.inflate
+import com.fikrihaikal.qurancall.databinding.ListItemMenuMateriTeacherBinding
 import com.fikrihaikal.qurancall.network.model.response.menumateri.DataItem
+import com.fikrihaikal.qurancall.utils.Constant
 
-class MenuMateriTeacherAdapter: RecyclerView.Adapter<MenuMateriTeacherAdapter.ListViewHolder>() {
+class MenuMateriTeacherAdapter(private val onDeleteClickListener: (String) -> Unit): RecyclerView.Adapter<MenuMateriTeacherAdapter.ListViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<DataItem>(){
         override fun areItemsTheSame(
@@ -27,10 +33,29 @@ class MenuMateriTeacherAdapter: RecyclerView.Adapter<MenuMateriTeacherAdapter.Li
 
     val differ = AsyncListDiffer(this,callback)
 
-    inner class ListViewHolder(private val binding: ListItemMenuMateriBinding):
+    inner class ListViewHolder(private val binding: ListItemMenuMateriTeacherBinding):
             RecyclerView.ViewHolder(binding.root){
                 fun bind(item: DataItem){
                     binding.tvTitle.text = item.title
+                    binding.cvMateri.setOnClickListener {
+                        val bundle = Bundle().apply {
+                            putString(Constant.KEY_MENU_MATERI,item.id)
+                        }
+                        it.findNavController().navigate(R.id.subMenuMateriTeacherFragment,bundle)
+                        Log.d("kirimId",bundle.toString())
+                    }
+                    binding.icDelete.setOnClickListener {
+                        showDeleteConfirmationDialog(item.id)
+                    }
+                }
+                private fun showDeleteConfirmationDialog(materiId:String){
+                    AlertDialog.Builder(binding.root.context)
+                        .setMessage("Apakah Anda yakin ingin menghapus kategori ini?")
+                        .setPositiveButton("Ya"){ _,_ ->
+                            onDeleteClickListener.invoke(materiId)
+                        }
+                        .setNegativeButton("Tidak", null)
+                        .show()
                 }
             }
 

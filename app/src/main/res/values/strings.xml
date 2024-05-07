@@ -5,7 +5,7 @@
     <string name="input_email">Masukkan Email</string>
     <string name="input_password">Masukkan Password</string>
     <string name="or_sign_in_with">atau masuk dengan</string>
-    <string name="dont_have_acc">Belum punya akun?</string>
+    <string name="dont_have_acc">Belum punya akun? Masuk disini</string>
     <string name="register">Daftar</string>
     <string name="assalamu_alaikum_wr_wb_silahkan_daftarkan_n_informasi_anda_untuk_mengakses_acc">Assalamu\'alaikum Wr Wb. Silahkan daftarkan\n informasi Anda untuk mengakses akun</string>
     <string name="input_username">Masukan Username</string>
@@ -83,4 +83,16 @@
     <string name="study_materi">Materi Belajar</string>
     <string name="add_category">Tambah\nKategori</string>
     <string name="upload_material">Unggah\nMateri</string>
+    <string name="add_category_fragment">Tambah Kategori.</string>
+    <string name="add_category_fragment2">Tambahkan kategori baru</string>
+    <string name="input_category">Masukkan Kategori Baru</string>
+    <string name="dont_have">Belum Punya?</string>
+    <string name="enter_here">Masuk disini</string>
+    <string name="upload_materi_fragment">Unggah Materi.</string>
+    <string name="upload_materi_fragment2">Unggah Materi Baru</string>
+    <string name="input_title">Masukkan Judul</string>
+    <string name="pick_category">Pilih Kategori</string>
+    <string name="input_author">Masukkan Penulis</string>
+    <string name="input_content">Masukkan Materi</string>
+    <string name="information_upload">Materi baru akan tersedia pada halaman materi dan\ndapat di akses oleh semua pengguna.</string>
 </resources>

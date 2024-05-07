@@ -1,7 +1,10 @@
 package com.fikrihaikal.qurancall.ui.user.fotoprofile
 
+import android.app.Activity
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
@@ -14,6 +17,7 @@ import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentGantiFotoBinding
 
 class GantiFotoFragment : Fragment() {
+    private val REQUEST_IMAGE_PICK = 1001
     private var _binding: FragmentGantiFotoBinding? = null
     private val binding get() = _binding!!
 
@@ -34,6 +38,29 @@ class GantiFotoFragment : Fragment() {
         val kebijakanText = getString(R.string.policies)
         val spannableString = createSpannableString(fullText,aturanText,kebijakanText)
         binding.tvAturanDanKebijakan.text = spannableString
+
+        pickPhoto()
+    }
+
+    private fun pickPhoto() {
+        binding.icCamera.setOnClickListener {
+            openGallery()
+        }
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent,REQUEST_IMAGE_PICK)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == Activity.RESULT_OK && data != null){
+            val selectedImageUri = data.data
+            selectedImageUri?.let {
+                binding.inputPhoto.setImageURI(it)
+            }
+        }
     }
 
     private fun createSpannableString(fullText: String, aturanText: String, kebijakanText: String): SpannableString {
