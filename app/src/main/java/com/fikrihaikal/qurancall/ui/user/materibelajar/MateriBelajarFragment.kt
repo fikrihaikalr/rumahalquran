@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentMateriBelajarBinding
@@ -38,6 +39,13 @@ class MateriBelajarFragment : Fragment() {
         setupUI()
         viewModel.getListMenuMateri()
         setupObservers()
+        toHome()
+    }
+
+    private fun toHome() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_materiBelajarFragment_to_homeFragment)
+        }
     }
 
     private fun setupObservers() {

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fikrihaikal.qurancall.data.repository.MateriRepository
 import com.fikrihaikal.qurancall.network.model.response.deletemateri.DeleteMateriResponse
+import com.fikrihaikal.qurancall.network.model.response.deletsubmateri.DeleteSubMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.menumateri.MenuMateriResponse
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.TokenPreferences
@@ -19,6 +20,7 @@ class MateriBelajarTeacherViewModel(private val materiRepository: MateriReposito
 
     private var _deleteMateriResponse = MutableLiveData<Resource<DeleteMateriResponse>>(Resource.Loading())
     val deleteMateriResponse: LiveData<Resource<DeleteMateriResponse>> get() = _deleteMateriResponse
+
 
     fun getListMenuMateri(){
         viewModelScope.launch(Dispatchers.IO) {

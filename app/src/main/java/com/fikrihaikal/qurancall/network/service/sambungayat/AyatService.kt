@@ -9,4 +9,8 @@ interface AyatService {
 
     @GET("v2/surat/{number}")
     fun getAyat(@Path("number") number: Int): Call<AyatResponse>
+//    @GET("verse/{surahId}")
+//    fun getAyat(
+//        @Path("surahId") number:String
+//    ): Call<SambungAyatResponse>
 }

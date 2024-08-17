@@ -42,9 +42,11 @@ class PilihSurahFragment : BottomSheetDialogFragment() {
         val listView: ListView = binding.listSurat
         viewModel.loadDaftarSurat()
         viewModel.daftarSurat.observe(viewLifecycleOwner) { listSurat ->
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, listSurat.map { it.namaLatin ?: "" })
-            listView.adapter = adapter
-            binding.progressBar.visibility = View.GONE
+            if (listSurat != null){
+                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, listSurat.map { it.namaLatin ?: "" })
+                listView.adapter = adapter
+                binding.progressBar.visibility = View.GONE
+            }
         }
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

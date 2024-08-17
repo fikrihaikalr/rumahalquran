@@ -1,17 +1,20 @@
 package com.fikrihaikal.qurancall.ui.teacher.submateriteacher.adapter
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.fikrihaikal.qurancall.databinding.ListItemSubMenuMateriBinding
+import com.fikrihaikal.qurancall.databinding.ListItemSubMenuMateriTeacherBinding
 import com.fikrihaikal.qurancall.network.model.response.submenumateri.DataItem
 
-class SubMenuMateriTeacherAdapter(private val itemClick: (DataItem) -> Unit) :
+class SubMenuMateriTeacherAdapter(private val itemClick: (DataItem) -> Unit,
+    private val deleteClick:(DataItem) -> Unit) :
     RecyclerView.Adapter<SubMenuMateriTeacherAdapter.InnerViewHolder>() {
 
     class InnerViewHolder(
-        private val binding: ListItemSubMenuMateriBinding,
-        val itemClick: (DataItem) -> Unit
+        private val binding: ListItemSubMenuMateriTeacherBinding,
+        val itemClick: (DataItem) -> Unit,
+        val deleteClick: (DataItem) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindView(item: DataItem) {
@@ -20,8 +23,18 @@ class SubMenuMateriTeacherAdapter(private val itemClick: (DataItem) -> Unit) :
                 binding.run {
                     tvTitle.text = item.title
                     tvAuthor.text = item.author
+                    icDelete.setOnClickListener { showDeleteConfirmationDialog(item) }
                 }
             }
+        }
+        private fun showDeleteConfirmationDialog(item:DataItem){
+            AlertDialog.Builder(binding.root.context)
+                .setMessage("Apakah Anda yakin ingin menghapus sub-materi ini?")
+                .setPositiveButton("Ya"){_,_ ->
+                    deleteClick(item)
+                }
+                .setNegativeButton("Tidak",null)
+                .show()
         }
     }
 
@@ -35,8 +48,8 @@ class SubMenuMateriTeacherAdapter(private val itemClick: (DataItem) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerViewHolder {
         val binding =
-            ListItemSubMenuMateriBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return InnerViewHolder(binding, itemClick)
+            ListItemSubMenuMateriTeacherBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return InnerViewHolder(binding, itemClick,deleteClick)
     }
 
     override fun getItemCount(): Int = items.size

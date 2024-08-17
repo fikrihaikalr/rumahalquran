@@ -3,16 +3,25 @@ package com.fikrihaikal.qurancall.network.service.api
 import com.fikrihaikal.qurancall.network.model.response.detaildoa.DetailDoaResponse
 import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
 import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
+import com.fikrihaikal.qurancall.network.model.response.forgotpassword.ForgotPasswordBody
+import com.fikrihaikal.qurancall.network.model.response.forgotpassword.ForgotPasswordResponse
 import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterBody
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterResponse
+import com.fikrihaikal.qurancall.network.model.response.resetpassword.ResetPasswordBody
+import com.fikrihaikal.qurancall.network.model.response.resetpassword.ResetPasswordResponse
+import com.fikrihaikal.qurancall.network.model.response.uploadfoto.UploadPhotoResponse
 import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -54,8 +63,25 @@ interface ApiService{
         @Path("userId") id:String,
     ):DetailGuruResponse
 
+    @PUT("{userId}/password")
+    suspend fun resetPassword(
+        @Header("Authorization") authorization: String,
+        @Path("userId") id:String,
+        @Body resetPasswordBody: ResetPasswordBody
+    ): ResetPasswordResponse
 
+    @Multipart
+    @POST("{id}/uploadPhoto")
+    suspend fun uploadPhoto(
+        @Header("Authorization") authorization: String,
+        @Part file: MultipartBody.Part,
+        @Path("id") id: String
+    ):UploadPhotoResponse
 
+    @POST("forgot")
+    suspend fun postForgotPassword(
+        @Body forgotPasswordBody: ForgotPasswordBody
+    ):ForgotPasswordResponse
 }
 
 //    @GET("listDoa")

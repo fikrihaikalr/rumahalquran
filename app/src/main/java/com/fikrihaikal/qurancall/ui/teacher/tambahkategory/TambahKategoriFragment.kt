@@ -33,6 +33,13 @@ class TambahKategoriFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addCategory()
+        toHome()
+    }
+
+    private fun toHome() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_tambahKategoriFragment_to_homeTeacherFragment)
+        }
     }
 
     private fun addCategory() {
@@ -47,6 +54,7 @@ class TambahKategoriFragment : Fragment() {
                         }
                         is Resource.Success ->{
                             binding.progressBar.isVisible = false
+                            viewModel.clearUploadState()
                             val data = it.data
                             if (data?.error == true){
                                 Toast.makeText(requireContext(),"Gagal Tambah Category",Toast.LENGTH_SHORT).show()
@@ -55,7 +63,11 @@ class TambahKategoriFragment : Fragment() {
                                 findNavController().navigate(R.id.action_tambahKategoriFragment_to_homeTeacherFragment)
                             }
                         }
-                        is Resource.Error ->{}
+                        is Resource.Error ->{
+                            binding.progressBar.isVisible = false
+                            viewModel.clearUploadState()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

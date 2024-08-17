@@ -19,59 +19,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_surah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/surah"
-                android:textColor="@color/biru_gelap"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="51dp"
-                android:layout_height="1dp"
-                android:background="@color/biru_gelap"
-                app:layout_constraintEnd_toEndOf="@id/tv_surah"
-                app:layout_constraintStart_toStartOf="@id/tv_surah"
-                app:layout_constraintTop_toBottomOf="@id/tv_surah" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_juz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/juz"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@id/tv_surah"
-                app:layout_constraintStart_toEndOf="@id/tv_surah"
-                app:layout_constraintTop_toTopOf="@id/tv_surah" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="51dp"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="@id/tv_juz"
-                app:layout_constraintStart_toStartOf="@id/tv_juz"
-                app:layout_constraintTop_toBottomOf="@id/tv_juz" />
-
-            <androidx.appcompat.widget.SearchView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/search_view"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/search_view_bg"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/biru_gelap"
+                app:startIconTint="@color/biru_gelap"
+                app:startIconDrawable="@drawable/baseline_search_24"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view1"
-                app:queryHint="Cari surat" />
+                app:layout_constraintEnd_toEndOf="parent">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Search"
+                    android:textColorHint="@color/biru_gelap"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_surah"

@@ -32,7 +32,7 @@ class TeacherActivity : AppCompatActivity() {
                 R.id.homeTeacherFragment -> hideBottom(false)
                 R.id.waktuAdzanTeacherFragment -> hideBottom(false)
                 R.id.compassTeacherFragment -> hideBottom(false)
-                R.id.alquranTeacherFragment -> hideBottom(false)
+                R.id.surahTeacherFragment -> hideBottom(false)
                 R.id.profileTeacherFragment -> hideBottom(false)
                 else -> hideBottom(true)
             }

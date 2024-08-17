@@ -32,6 +32,14 @@ class OnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigateToLogin()
+        navigateToLoginWithSkip()
+    }
+
+    private fun navigateToLoginWithSkip() = with(binding){
+        tvSkip.setOnClickListener {
+            viewModel.saveOnBoarding("onBoarding")
+            findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
+        }
     }
 
     private fun navigateToLogin() = with(binding){

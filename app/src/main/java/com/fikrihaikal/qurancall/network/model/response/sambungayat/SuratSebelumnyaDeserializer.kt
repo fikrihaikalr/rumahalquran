@@ -8,7 +8,11 @@ import com.google.gson.JsonParseException
 import java.lang.reflect.Type
 
 class SuratSebelumnyaDeserializer : JsonDeserializer<SuratSebelumnya?> {
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): SuratSebelumnya? {
+    override fun deserialize(
+        json: JsonElement,
+        typeOfT: Type,
+        context: JsonDeserializationContext
+    ): SuratSebelumnya? {
         return if (json.isJsonObject) {
             Gson().fromJson(json, SuratSebelumnya::class.java)
         } else if (json.isJsonPrimitive && json.asJsonPrimitive.isBoolean) {

@@ -30,7 +30,7 @@ class DetailSurahFragment : Fragment() {
         ViewModelFactory(requireContext())
     }
     private lateinit var detailSurahAdapter: DetailSurahAdapter
-
+    private var mediaPlayer:MediaPlayer? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +52,7 @@ class DetailSurahFragment : Fragment() {
 
     private fun toListSurah() {
         binding.btnBack.setOnClickListener {
+            mediaPlayer?.stop()
             findNavController().navigate(R.id.action_detailSurahFragment_to_surahFragment)
         }
     }
@@ -78,16 +79,22 @@ class DetailSurahFragment : Fragment() {
             }
         }
     }
-
-    private fun playAudio(path: String) {
-        val mediaPlayer = MediaPlayer()
+    private fun playAudio(path:String){
+        if (mediaPlayer == null){
+            mediaPlayer = MediaPlayer().apply {
+                setAudioStreamType(AudioManager.STREAM_MUSIC)
+            }
+        }
         binding.fabPlay.setOnClickListener {
             try {
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-                mediaPlayer.setDataSource(path)
-                mediaPlayer.prepare()
-                mediaPlayer.start()
-            }catch (e: IOException){
+
+                mediaPlayer?.apply {
+                    reset()
+                    setDataSource(path)
+                    prepare()
+                    start()
+                }
+            }catch (e:IOException){
                 e.printStackTrace()
             }
             binding.fabPlay.visibility = View.GONE
@@ -95,12 +102,33 @@ class DetailSurahFragment : Fragment() {
         }
 
         binding.fabStop.setOnClickListener {
-            mediaPlayer.stop()
-            mediaPlayer.reset()
+            mediaPlayer?.stop()
             binding.fabPlay.visibility = View.VISIBLE
             binding.fabStop.visibility = View.GONE
         }
     }
+//    private fun playAudio(path: String) {
+//        val mediaPlayer = MediaPlayer()
+//        binding.fabPlay.setOnClickListener {
+//            try {
+//                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+//                mediaPlayer.setDataSource(path)
+//                mediaPlayer.prepare()
+//                mediaPlayer.start()
+//            }catch (e: IOException){
+//                e.printStackTrace()
+//            }
+//            binding.fabPlay.visibility = View.GONE
+//            binding.fabStop.visibility = View.VISIBLE
+//        }
+//
+//        binding.fabStop.setOnClickListener {
+//            mediaPlayer.stop()
+//            mediaPlayer.reset()
+//            binding.fabPlay.visibility = View.VISIBLE
+//            binding.fabStop.visibility = View.GONE
+//        }
+//    }
 
     private fun bindView(data: Data) {
         val nameSurah = data.surahName
@@ -122,6 +150,8 @@ class DetailSurahFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        mediaPlayer?.release()
+        mediaPlayer = null
         _binding = null
     }
 

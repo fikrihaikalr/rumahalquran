@@ -11,9 +11,33 @@ import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailSurahTeacherViewModel(private val surahRepository: SurahRepository,private val tokenPreferences: TokenPreferences) : ViewModel() {
+class DetailSurahTeacherViewModel(
+    private val surahRepository: SurahRepository,
+    private val tokenPreferences: TokenPreferences
+) : ViewModel() {
     private var _detailSurahResponse = MutableLiveData<Resource<DetailSurahResponse>>()
-    val detailsurahResponse : LiveData<Resource<DetailSurahResponse>> get() = _detailSurahResponse
+    val detailsurahResponse: LiveData<Resource<DetailSurahResponse>> get() = _detailSurahResponse
+    fun getDetail(id: String) = viewModelScope.launch(Dispatchers.IO) {
+        _detailSurahResponse.postValue(Resource.Loading())
+        try {
+            val response =
+                tokenPreferences.getToken()?.let { surahRepository.getDetailSurah(it, id) }
+            viewModelScope.launch(Dispatchers.Main) {
+                if (response!!.payload != null) {
+                    _detailSurahResponse.postValue(Resource.Success(response.payload))
+                } else {
+                    _detailSurahResponse.postValue(Resource.Error(response.exception, "Error"))
+                }
+            }
+        } catch (e: Exception) {
+            viewModelScope.launch(Dispatchers.Main) {
+                _detailSurahResponse.postValue(Resource.Error(e, "Error"))
+            }
+        }
+    }
+}
+
+
 
 //    fun getDetail(id:String) = viewModelScope.launch(Dispatchers.IO) {
 //        _detailSurahResponse.postValue(Resource.Loading())
@@ -28,21 +52,3 @@ class DetailSurahTeacherViewModel(private val surahRepository: SurahRepository,p
 //            }
 //        }
 //    }
-fun getDetail(id:String) = viewModelScope.launch(Dispatchers.IO) {
-    _detailSurahResponse.postValue(Resource.Loading())
-    try {
-        val response = tokenPreferences.getToken()?.let { surahRepository.getDetailSurah(it,id) }
-        viewModelScope.launch(Dispatchers.Main) {
-            if (response!!.payload != null){
-                _detailSurahResponse.postValue(Resource.Success(response.payload))
-            }else{
-                _detailSurahResponse.postValue(Resource.Error(response.exception,"Error"))
-            }
-        }
-    }catch (e:Exception){
-        viewModelScope.launch(Dispatchers.Main) {
-            _detailSurahResponse.postValue(Resource.Error(e,"Error"))
-        }
-    }
-}
-}

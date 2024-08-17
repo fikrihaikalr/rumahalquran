@@ -3,6 +3,7 @@ package com.fikrihaikal.qurancall.network.service.materi
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriBody
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.deletemateri.DeleteMateriResponse
+import com.fikrihaikal.qurancall.network.model.response.deletsubmateri.DeleteSubMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.detailcontentmateri.DetailContentMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.menumateri.MenuMateriResponse
@@ -46,6 +47,12 @@ interface MateriService {
         @Header("Authorization") authorization: String,
         @Path("materiId") id:String,
     ): DeleteMateriResponse
+
+    @DELETE("submateri/{subMateriId}")
+    suspend fun deleteSubMateri(
+        @Header ("Authorization") authorization: String,
+        @Path("subMateriId") id:String,
+    ):DeleteSubMateriResponse
 
     @POST("create")
     suspend fun addMateri(

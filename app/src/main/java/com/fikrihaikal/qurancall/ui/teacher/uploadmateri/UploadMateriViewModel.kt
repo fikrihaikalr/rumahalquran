@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fikrihaikal.qurancall.data.repository.MateriRepository
+import com.fikrihaikal.qurancall.domain.model.user.unggahmateri.UploadMateri
+import com.fikrihaikal.qurancall.domain.usecase.unggahmateri.ValidateUploadMateriUseCase
+import com.fikrihaikal.qurancall.domain.usecase.unggahmateri.ValidationResultMateri
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriBody
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.menumateri.MenuMateriResponse
-import com.fikrihaikal.qurancall.network.model.response.tambahkategori.TambahKategoriBody
-import com.fikrihaikal.qurancall.network.model.response.tambahkategori.TambahKategoriResponse
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +25,18 @@ class UploadMateriViewModel(private val materiRepository: MateriRepository, priv
     private val _addMateri = MutableLiveData<Resource<AddMateriResponse>>()
     val addMateri : LiveData<Resource<AddMateriResponse>> get() = _addMateri
 
+    private val validateUploadMateriUseCase = ValidateUploadMateriUseCase()
+    private val _validationResult = MutableLiveData<ValidationResultMateri>()
+    val validationResult: LiveData<ValidationResultMateri> get() = _validationResult
 
+    fun validateUploadMateri(uploadMateri: UploadMateri) {
+        val result = validateUploadMateriUseCase.validate(uploadMateri)
+        _validationResult.value = result
+    }
+
+    fun clearState() {
+        _addMateri.value = null
+    }
     fun getListMenuMateri(){
         viewModelScope.launch(Dispatchers.IO) {
             _listMateriResponse.postValue(materiRepository.getListMenuMateri(tokenPreferences.getToken().orEmpty()))

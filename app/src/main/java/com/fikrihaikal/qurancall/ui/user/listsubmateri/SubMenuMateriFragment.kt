@@ -68,12 +68,10 @@ class SubMenuMateriFragment : Fragment() {
                 is Resource.Loading -> {
                     binding.progressBar.isVisible = true
                 }
-
                 is Resource.Error -> {
                     binding.progressBar.isVisible = false
                     Log.d("error", it.message!!)
                 }
-
                 is Resource.Success -> {
                     binding.progressBar.isVisible = false
                     it.data?.data?.let { data ->

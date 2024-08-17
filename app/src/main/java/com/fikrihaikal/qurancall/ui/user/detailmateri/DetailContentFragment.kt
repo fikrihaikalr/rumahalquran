@@ -83,7 +83,6 @@ class DetailContentFragment : Fragment() {
                     it.data?.data?.let { data ->
                         bindView(data)
                         Log.d("OBS DATA DETAIL CONTENT",data.toString())
-//                        detailContentMateriAdapter.setItems(it.data.data)
                     }
                 }
             }
@@ -109,7 +108,7 @@ class DetailContentFragment : Fragment() {
 //            setHasFixedSize(true)
 //        }
 //    }
-
+//                        detailContentMateriAdapter.setItems(it.data.data)
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

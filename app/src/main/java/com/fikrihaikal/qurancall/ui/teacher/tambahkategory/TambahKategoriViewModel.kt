@@ -31,4 +31,7 @@ class TambahKategoriViewModel(private val materiRepository: MateriRepository,pri
             }
         }
     }
+    fun clearUploadState() {
+        _addCategory.value = null
+    }
 }

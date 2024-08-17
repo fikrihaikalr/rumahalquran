@@ -28,18 +28,33 @@ class SubMenuMateriTeacherFragment : Fragment() {
     private val idMateri:String by lazy {
         arguments?.getString(Constant.KEY_MENU_MATERI).orEmpty()
     }
+//    private val subMenuMateriTeacherAdapter: SubMenuMateriTeacherAdapter by lazy {
+//        SubMenuMateriTeacherAdapter{ data ->
+//            findNavController().navigate(
+//                R.id.action_subMenuMateriTeacherFragment_to_detailContentTeacherFragment,
+//                Bundle().apply {
+//                    putString(Constant.KEY_SUB_MENU_ID,data.id)
+//                    putString(Constant.KEY_MENU_MATERI, idMateri)
+//                }
+//            )
+//        }
+//    }
     private val subMenuMateriTeacherAdapter: SubMenuMateriTeacherAdapter by lazy {
-        SubMenuMateriTeacherAdapter{ data ->
-            findNavController().navigate(
-                R.id.action_subMenuMateriTeacherFragment_to_detailContentTeacherFragment,
-                Bundle().apply {
-                    putString(Constant.KEY_SUB_MENU_ID,data.id)
-                    putString(Constant.KEY_MENU_MATERI, idMateri)
-                }
-            )
-        }
-    }
-
+        SubMenuMateriTeacherAdapter(
+            itemClick = {data ->
+                findNavController().navigate(
+                    R.id.action_subMenuMateriTeacherFragment_to_detailContentTeacherFragment,
+                    Bundle().apply {
+                        putString(Constant.KEY_SUB_MENU_ID,data.id)
+                        putString(Constant.KEY_MENU_MATERI,idMateri)
+                    }
+                )
+            },
+            deleteClick = {data ->
+                viewModel.deleteSubMateriById(data.id)
+            }
+        )
+}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +68,20 @@ class SubMenuMateriTeacherFragment : Fragment() {
         viewModel.getSubMenuMateriTeacher(idMateri)
         setupUI()
         observeSubMenuMateriTeacher()
+        observeDeleteSubMateri()
         toListMenuMateri()
+    }
+
+    private fun observeDeleteSubMateri() {
+        viewModel.deleteSubMateriResponse.observe(viewLifecycleOwner){
+            when(it){
+                is Resource.Loading ->{}
+                is Resource.Success ->{
+                    viewModel.getSubMenuMateriTeacher(idMateri)
+                }
+                is Resource.Error ->{}
+            }
+        }
     }
 
     private fun observeSubMenuMateriTeacher() {

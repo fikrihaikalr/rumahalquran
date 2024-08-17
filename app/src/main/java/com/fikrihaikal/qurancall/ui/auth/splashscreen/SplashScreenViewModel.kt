@@ -11,4 +11,10 @@ class SplashScreenViewModel(private val tokenPreferences: TokenPreferences) : Vi
 
     val role = tokenPreferences.getUserRoles().asLiveData(Dispatchers.IO)
     val onBoarding = tokenPreferences.getOnBoarding().asLiveData(Dispatchers.IO)
+
+    fun removeSession() = viewModelScope.launch(Dispatchers.IO) {
+        tokenPreferences.deleteToken()
+        tokenPreferences.deleteUserRoles()
+        tokenPreferences.deleteId()
+    }
 }

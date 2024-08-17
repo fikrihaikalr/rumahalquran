@@ -39,8 +39,6 @@ class TokenPreferences private constructor(private val dataStore: DataStore<Pref
         return dataStore.data.map {
             it[PreferencesKeys.USER_ROLES].orEmpty()
         }
-//        val rolesJson = dataStore.data.first()[PreferencesKeys.USER_ROLES]
-//        return Gson().fromJson(rolesJson, Array<String>::class.java).toList()
     }
 
     suspend fun deleteUserRoles() {

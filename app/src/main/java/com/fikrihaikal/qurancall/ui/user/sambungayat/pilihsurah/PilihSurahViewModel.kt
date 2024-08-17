@@ -16,6 +16,7 @@ class PilihSurahViewModel: ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun loadDaftarSurat() {
+        _daftarSurat.value = null
         _isLoading.value = true // Mulai loading
         viewModelScope.launch {
             // Contoh, anggap setiap surat tersedia dari 1 sampai 114
@@ -26,4 +27,6 @@ class PilihSurahViewModel: ViewModel() {
             _isLoading.value = false // Selesai loading
         }
     }
+
+
 }

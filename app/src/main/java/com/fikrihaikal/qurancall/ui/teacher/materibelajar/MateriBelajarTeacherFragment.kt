@@ -38,6 +38,7 @@ class MateriBelajarTeacherFragment : Fragment() {
         viewModel.getListMenuMateri()
         setupObservers()
         toHome()
+
     }
 
     private fun toHome() {

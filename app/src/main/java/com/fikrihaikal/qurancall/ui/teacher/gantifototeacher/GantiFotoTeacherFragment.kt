@@ -1,23 +1,54 @@
 package com.fikrihaikal.qurancall.ui.teacher.gantifototeacher
 
+import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentGantiFotoTeacherBinding
+import com.fikrihaikal.qurancall.utils.Resource
+import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import java.io.FileOutputStream
 
 class GantiFotoTeacherFragment : Fragment() {
 
     private var _binding: FragmentGantiFotoTeacherBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: GantiFotoTeacherViewModel by viewModels()
+    private val viewModel: GantiFotoTeacherViewModel by viewModels(){
+        ViewModelFactory(requireContext())
+    }
+    private var selectedPhotoFile: File? = null
+    private val requestPhotoLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { handleSelectedPhoto(it) }
+    }
+
+    private fun handleSelectedPhoto(uri: Uri) {
+        val file = File(requireContext().cacheDir, "temp_photo.jpg")
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val outputStream = FileOutputStream(file)
+        inputStream?.copyTo(outputStream)
+        inputStream?.close()
+        outputStream.close()
+        selectedPhotoFile = file
+        binding.inputPhoto.setImageURI(uri)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +66,96 @@ class GantiFotoTeacherFragment : Fragment() {
         val kebijakanText = getString(R.string.policies)
         val spannableString = createSpannableString(fullText,aturanText,kebijakanText)
         binding.tvAturanDanKebijakan.text = spannableString
+
+        viewModel.getUser()
+        toProfile()
+        pickPhoto()
+        observeUser()
+        observeUpload()
+    }
+
+
+    private fun pickPhoto() {
+        binding.icCamera.setOnClickListener {
+            requestPhotoLauncher.launch("image/*")
+        }
+    }
+    private fun observeUser() = with(binding) {
+        viewModel.userResponse.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    Log.d("photoData", resource.data?.photoPath.toString())
+                    Glide.with(requireContext()).load(resource.data?.photoPath)
+                        .into(binding.inputPhoto)
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${resource.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is Resource.Loading -> {
+                }
+            }
+        }
+
+    }
+    private fun observeUpload() {
+        binding.btnSimpan.setOnClickListener {
+            observeUploadPhoto()
+        }
+    }
+    private fun observeUploadPhoto() {
+        selectedPhotoFile?.let { file ->
+            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
+            val body = MultipartBody.Part.createFormData(
+                name = "file",
+                filename = file.name,
+                body = requestFile
+            )
+            viewModel.uploadPhoto(body)
+        }
+        observeUploadPhotoResponse()
+    }
+    private fun observeUploadPhotoResponse() {
+        viewModel.uploadPhotoResponse.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+
+                is Resource.Success -> {
+                    showLoading(false)
+                    val data = resource.data
+                    if (data?.error == true) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Gagal Upload Photo",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Berhasil Upload Photo",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigate(R.id.homeTeacherFragment)
+                    }
+                }
+
+                is Resource.Error -> {
+                    showLoading(false)
+                    Toast.makeText(
+                        requireContext(),
+                        "ERROR",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun createSpannableString(fullText: String, aturanText: String, kebijakanText: String): SpannableString {
@@ -60,6 +181,13 @@ class GantiFotoTeacherFragment : Fragment() {
     private fun toProfile() {
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_gantiFotoTeacherFragment_to_profileTeacherFragment)
+        }
+    }
+    private fun showLoading(status: Boolean) {
+        if (status) {
+            binding.pbRegister.visibility = View.VISIBLE
+        } else {
+            binding.pbRegister.visibility = View.INVISIBLE
         }
     }
 }

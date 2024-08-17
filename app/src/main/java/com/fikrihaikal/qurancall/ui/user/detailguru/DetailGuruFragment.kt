@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
+import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentDetailGuruBinding
 import com.fikrihaikal.qurancall.network.model.response.detailguru.Data
 import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
@@ -17,6 +19,7 @@ import com.fikrihaikal.qurancall.utils.Constant
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
 import java.net.URLEncoder
+import java.util.stream.Collectors.toList
 
 class DetailGuruFragment : Fragment() {
     private var _binding: FragmentDetailGuruBinding? = null
@@ -41,8 +44,14 @@ class DetailGuruFragment : Fragment() {
         Log.d("dataDiterima", dataUsername)
         viewModel.getDetail(dataUsername)
         observeData()
+        toList()
     }
 
+    private fun toList(){
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.pilihGuruFragment)
+        }
+    }
     private fun toWhatsApp(phoneNumber:String, template: String) {
         binding.btnChatGuru.setOnClickListener {
             val contactNumber = phoneNumber.replace("\\s".toRegex(), "")
@@ -60,11 +69,9 @@ class DetailGuruFragment : Fragment() {
                 is Resource.Loading -> {
                     binding.pbDetail.isVisible = true
                 }
-
                 is Resource.Error -> {
                     binding.pbDetail.isVisible = false
                 }
-
                 is Resource.Success -> {
                     binding.pbDetail.isVisible = false
                     it.data?.data?.let { data ->

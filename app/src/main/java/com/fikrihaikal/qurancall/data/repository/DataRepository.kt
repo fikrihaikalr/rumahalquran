@@ -4,15 +4,21 @@ import android.content.Context
 import com.fikrihaikal.qurancall.network.model.response.detaildoa.DetailDoaResponse
 import com.fikrihaikal.qurancall.network.model.response.detailguru.DetailGuruResponse
 import com.fikrihaikal.qurancall.network.model.response.doa.DoaResponse
+import com.fikrihaikal.qurancall.network.model.response.forgotpassword.ForgotPasswordBody
+import com.fikrihaikal.qurancall.network.model.response.forgotpassword.ForgotPasswordResponse
 import com.fikrihaikal.qurancall.network.model.response.guru.GuruResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterBody
 import com.fikrihaikal.qurancall.network.model.response.register.RegisterResponse
+import com.fikrihaikal.qurancall.network.model.response.resetpassword.ResetPasswordBody
+import com.fikrihaikal.qurancall.network.model.response.resetpassword.ResetPasswordResponse
+import com.fikrihaikal.qurancall.network.model.response.uploadfoto.UploadPhotoResponse
 import com.fikrihaikal.qurancall.network.model.response.user.GetUserResponse
 import com.fikrihaikal.qurancall.network.service.api.ApiService
 import com.fikrihaikal.qurancall.utils.Resource
 import com.fikrihaikal.qurancall.utils.proceed
+import okhttp3.MultipartBody
 
 class DataRepository(private val  apiService: ApiService, private val context: Context){
 
@@ -26,6 +32,10 @@ class DataRepository(private val  apiService: ApiService, private val context: C
             apiService.postRegist(registerBody)
         }
 
+    suspend fun postForgotPassword(forgotPasswordBody: ForgotPasswordBody):Resource<ForgotPasswordResponse> =
+        proceed {
+            apiService.postForgotPassword(forgotPasswordBody)
+        }
     suspend fun getUser(token:String,userId:Int):Resource<GetUserResponse> =
         proceed {
             apiService.getUser(token,userId)
@@ -48,6 +58,16 @@ class DataRepository(private val  apiService: ApiService, private val context: C
     suspend fun getDetailGuru(token: String,id:String): Resource<DetailGuruResponse> =
         proceed {
             apiService.getDetailGuru(token,id)
+        }
+
+    suspend fun updatePassword(token: String, id:String, resetPasswordBody: ResetPasswordBody) : Resource<ResetPasswordResponse> =
+        proceed {
+            apiService.resetPassword(token,id,resetPasswordBody)
+        }
+
+    suspend fun uploadPhoto(token: String,file:MultipartBody.Part,id: String):Resource<UploadPhotoResponse> =
+        proceed {
+            apiService.uploadPhoto(token,file,id)
         }
 
 }

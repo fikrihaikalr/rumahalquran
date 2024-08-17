@@ -1,8 +1,7 @@
-package com.fikrihaikal.qurancall.ui.user.fotoprofile
+package com.fikrihaikal.qurancall.ui.user.fotoprofile.gantifoto
 
 import android.app.Activity
 import android.content.Intent
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.SpannableString
@@ -31,7 +30,6 @@ class GantiFotoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toProfile()
 
         val fullText = getString(R.string.rules_and_policies)
         val aturanText = getString(R.string.rules)
@@ -83,10 +81,4 @@ class GantiFotoFragment : Fragment() {
         spannableString.setSpan(ForegroundColorSpan(color),startIndex,endIndex,0)
     }
 
-
-    private fun toProfile() {
-        binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_gantiFotoFragment_to_profileFragment)
-        }
-    }
 }

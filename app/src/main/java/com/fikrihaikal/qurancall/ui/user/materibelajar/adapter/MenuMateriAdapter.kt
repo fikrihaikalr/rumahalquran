@@ -37,6 +37,8 @@ class MenuMateriAdapter : RecyclerView.Adapter<MenuMateriAdapter.ListViewHolder>
 
         fun bind(item: DataItem){
             binding.tvTitle.text = item.title
+            val jumlahMateri = item.jumlahMateri
+            binding.tvCount.text = "($jumlahMateri)"
             binding.cvMateri.setOnClickListener {
                 val bundle =Bundle().apply {
                     putString(Constant.KEY_MENU_MATERI,item.id)

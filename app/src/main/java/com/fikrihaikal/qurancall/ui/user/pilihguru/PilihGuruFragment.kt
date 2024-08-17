@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentPilihGuruBinding
 import com.fikrihaikal.qurancall.ui.user.pilihguru.adapter.GuruAdapter
 import com.fikrihaikal.qurancall.utils.Resource
@@ -38,6 +39,13 @@ class PilihGuruFragment : Fragment() {
         setupUI()
         viewModel.getListGuru()
         setupObservers()
+        toHome()
+    }
+
+    private fun toHome() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
     }
 
     private fun setupObservers() {
@@ -51,7 +59,6 @@ class PilihGuruFragment : Fragment() {
                     guruAdapter.differ.submitList(doaList)
                     Log.i("observe data ", "$doaList")
                 }
-
                 is Resource.Error -> {}
                 is Resource.Loading -> {
                     binding.pbHomeStory.isVisible = true

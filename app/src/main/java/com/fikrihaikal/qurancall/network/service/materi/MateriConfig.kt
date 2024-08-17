@@ -1,5 +1,6 @@
 package com.fikrihaikal.qurancall.network.service.materi
 
+import com.fikrihaikal.qurancall.BuildConfig
 import com.fikrihaikal.qurancall.network.service.surah.SurahService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +17,7 @@ class MateriConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://rumah-quran-online-production.up.railway.app/api/")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

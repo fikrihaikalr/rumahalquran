@@ -11,15 +11,6 @@ data class MenuMateriResponse(
 	val data: List<DataItem>
 )
 
-data class DataItem(
-
-	@field:SerializedName("id")
-	val id: String,
-
-	@field:SerializedName("title")
-	val title: String
-)
-
 data class MessageResponse(
 
 	@field:SerializedName("error")
@@ -27,4 +18,16 @@ data class MessageResponse(
 
 	@field:SerializedName("message")
 	val message: String
+)
+
+data class DataItem(
+
+	@field:SerializedName("jumlahMateri")
+	val jumlahMateri: String,
+
+	@field:SerializedName("id")
+	val id: String,
+
+	@field:SerializedName("title")
+	val title: String
 )

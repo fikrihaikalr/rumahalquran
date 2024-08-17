@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.fikrihaikal.qurancall.MainActivity
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentProfileTeacherBinding
@@ -56,6 +57,8 @@ class ProfileTeacherFragment : Fragment() {
         viewModel.profile.observe(viewLifecycleOwner) { resources ->
             when (resources) {
                 is Resource.Success -> {
+                    Glide.with(requireContext()).load(resources.data?.photoPath)
+                        .into(binding.ivProfile)
                     val username = resources.data?.username
                     val email = resources.data?.email
                     val usernameEditTable =

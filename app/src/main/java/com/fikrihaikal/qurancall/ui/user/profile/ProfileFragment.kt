@@ -9,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.fikrihaikal.qurancall.MainActivity
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentProfileBinding
@@ -49,6 +51,7 @@ class ProfileFragment : Fragment() {
         observeUser()
     }
 
+
     private fun toChangePassword() {
         binding.constraintPassword.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_gantiPasswordFragment)
@@ -57,7 +60,7 @@ class ProfileFragment : Fragment() {
 
     private fun toChangePhoto() {
         binding.cv1.setOnClickListener{
-            findNavController().navigate(R.id.action_profileFragment_to_gantiFotoFragment)
+            findNavController().navigate(R.id.action_profileFragment_to_uploadFotoFragment)
         }
     }
 
@@ -66,6 +69,8 @@ class ProfileFragment : Fragment() {
         profileView.profile.observe(viewLifecycleOwner) { resources ->
             when (resources) {
                 is Resource.Success -> {
+                    Glide.with(requireContext()).load(resources.data?.photoPath)
+                        .into(binding.ivProfile)
                     val username = resources.data?.username
                     val email = resources.data?.email
                     val usernameEditTable =
@@ -76,14 +81,12 @@ class ProfileFragment : Fragment() {
                     binding.edUsernameProfile.text = usernameEditTable
                     binding.edEmailProfile.text = emailEditTable
                 }
-
                 is Resource.Error -> {
                     Toast.makeText(
                         requireContext(), "Error: ${resources.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
                 is Resource.Loading -> {}
             }
         }

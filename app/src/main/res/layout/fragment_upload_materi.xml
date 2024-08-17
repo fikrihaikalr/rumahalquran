@@ -200,6 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Simpan"
+            android:enabled="false"
             android:backgroundTint="@color/biru_gelap"/>
     </RelativeLayout>
     <ProgressBar

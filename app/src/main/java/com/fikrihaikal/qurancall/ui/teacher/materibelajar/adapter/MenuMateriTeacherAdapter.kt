@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -15,7 +16,8 @@ import com.fikrihaikal.qurancall.databinding.ListItemMenuMateriTeacherBinding
 import com.fikrihaikal.qurancall.network.model.response.menumateri.DataItem
 import com.fikrihaikal.qurancall.utils.Constant
 
-class MenuMateriTeacherAdapter(private val onDeleteClickListener: (String) -> Unit): RecyclerView.Adapter<MenuMateriTeacherAdapter.ListViewHolder>() {
+class MenuMateriTeacherAdapter(private val onDeleteClickListener: (String) -> Unit):
+    RecyclerView.Adapter<MenuMateriTeacherAdapter.ListViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<DataItem>(){
         override fun areItemsTheSame(
@@ -37,6 +39,8 @@ class MenuMateriTeacherAdapter(private val onDeleteClickListener: (String) -> Un
             RecyclerView.ViewHolder(binding.root){
                 fun bind(item: DataItem){
                     binding.tvTitle.text = item.title
+                    val jumlahMateri = item.jumlahMateri.toInt()
+                    binding.tvCount.text = "($jumlahMateri)"
                     binding.cvMateri.setOnClickListener {
                         val bundle = Bundle().apply {
                             putString(Constant.KEY_MENU_MATERI,item.id)
@@ -45,7 +49,12 @@ class MenuMateriTeacherAdapter(private val onDeleteClickListener: (String) -> Un
                         Log.d("kirimId",bundle.toString())
                     }
                     binding.icDelete.setOnClickListener {
-                        showDeleteConfirmationDialog(item.id)
+                        if (jumlahMateri > 0){
+                            Toast.makeText(binding.root.context,"Materi tidak bisa dihapus karena masih terdapat Sub Materi",Toast.LENGTH_SHORT).show()
+                        }else if (jumlahMateri == 0){
+                            showDeleteConfirmationDialog(item.id)
+                        }
+
                     }
                 }
                 private fun showDeleteConfirmationDialog(materiId:String){

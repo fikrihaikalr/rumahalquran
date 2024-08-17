@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.fikrihaikal.qurancall.R
 import com.fikrihaikal.qurancall.databinding.FragmentHomeTeacherBinding
 import com.fikrihaikal.qurancall.network.model.data.home.getItemMenuList
@@ -70,6 +71,13 @@ class HomeTeacherFragment : Fragment() {
         viewModel.getUser()
         observeUser()
         toSetting()
+        toProfile()
+    }
+
+    private fun toProfile() {
+        binding.ivProfile.setOnClickListener{
+            findNavController().navigate(R.id.action_homeTeacherFragment_to_profileTeacherFragment)
+        }
     }
 
     private fun toSetting() {
@@ -86,10 +94,11 @@ class HomeTeacherFragment : Fragment() {
                     val username = resource.data?.username
                     Log.i("observeUser resource", "$username")
                     binding.tvName.text = username
+                    Glide.with(requireContext()).load(resource.data?.photoPath)
+                        .into(binding.ivProfile)
                 }
 
                 is Resource.Error -> {
-                    // Tanggapan error: tangani kesalahan jika terjadi
                     Toast.makeText(
                         requireContext(),
                         "Error: ${resource.message}",
@@ -98,7 +107,6 @@ class HomeTeacherFragment : Fragment() {
                 }
 
                 is Resource.Loading -> {
-                    // Tanggapan sedang dimuat: tampilkan indikator loading atau lakukan tindakan yang sesuai
                 }
             }
         }

@@ -17,8 +17,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_beta_test">
             <RelativeLayout
                 android:id="@+id/relativeHeader"
                 android:layout_width="wrap_content"
@@ -44,25 +44,37 @@
                     android:textColor="@color/hitam"
                     android:textSize="24sp"
                     android:layout_below="@id/tv_assalamualaikum"/>
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintCircle"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_outlined"
                     android:layout_alignParentEnd="true"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="20dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/avatars"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ic_setting"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_alignTop="@+id/iv_profile"
-                    android:layout_alignBottom="@+id/iv_profile"
+                    android:layout_alignTop="@+id/constraintCircle"
+                    android:layout_alignBottom="@+id/constraintCircle"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="0dp"
-                    android:layout_toStartOf="@id/iv_profile"
+                    android:layout_toStartOf="@id/constraintCircle"
                     android:src="@drawable/ic_settings_24" />
             </RelativeLayout>
             

@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.fikrihaikal.qurancall.ui.teacher.TeacherActivity
 import com.fikrihaikal.qurancall.ui.user.UserActivity
 import com.fikrihaikal.qurancall.utils.ViewModelFactory
+import com.fikrihaikal.qurancall.utils.isJwtExpired
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import kotlinx.coroutines.CoroutineScope
@@ -57,15 +58,16 @@ class SplashScreenFragment : Fragment() {
         }, time)
     }
 
-    private fun checkOnBoarding(){
+    private fun checkOnBoarding() {
         viewModel.onBoarding.observe(viewLifecycleOwner) {
-            if (it.isNullOrEmpty()){
+            if (it.isNullOrEmpty()) {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)
             } else {
                 setNavigationToken()
             }
         }
     }
+
     private fun setNavigationToken() {
         val dataStore: DataStore<Preferences> = requireContext().dataStore
         tokenPreferences = TokenPreferences.getInstance(dataStore)
@@ -75,24 +77,28 @@ class SplashScreenFragment : Fragment() {
                 if (it.isNullOrEmpty()) {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
                 } else {
-                    when {
-                        it.contains("ROLE_TEACHER") -> {
-                            startActivity(Intent(requireContext(), TeacherActivity::class.java))
-                        }
+                    if (token.isJwtExpired()) {
+                        viewModel.removeSession()
+                        findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+                    } else {
+                        when {
+                            it.contains("ROLE_TEACHER") -> {
+                                startActivity(Intent(requireContext(), TeacherActivity::class.java))
+                            }
 
-                        it.contains("ROLE_STUDENTS") -> {
-                            startActivity(Intent(requireContext(), UserActivity::class.java))
-                        }
+                            it.contains("ROLE_STUDENTS") -> {
+                                startActivity(Intent(requireContext(), UserActivity::class.java))
+                            }
 
-                        else -> {
-                            findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+                            else -> {
+                                findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+                            }
                         }
+                        requireActivity().finish()
                     }
-                    requireActivity().finish()
                 }
             }
-        }
-        else {
+        } else {
             findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
         }
     }

@@ -34,7 +34,7 @@ class UserActivity : AppCompatActivity() {
                 R.id.homeFragment -> hideBottom(false)
                 R.id.waktuAdzanFragment -> hideBottom(false)
                 R.id.compassFragment -> hideBottom(false)
-                R.id.alquranFragment -> hideBottom(false)
+                R.id.surahFragment -> hideBottom(false)
                 R.id.profileFragment -> hideBottom(false)
                 else -> hideBottom(true)
             }

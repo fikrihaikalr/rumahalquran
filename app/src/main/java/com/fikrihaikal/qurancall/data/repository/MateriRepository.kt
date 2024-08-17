@@ -5,6 +5,7 @@ import android.util.Log
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriBody
 import com.fikrihaikal.qurancall.network.model.response.addmateri.AddMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.deletemateri.DeleteMateriResponse
+import com.fikrihaikal.qurancall.network.model.response.deletsubmateri.DeleteSubMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.detailcontentmateri.DetailContentMateriResponse
 import com.fikrihaikal.qurancall.network.model.response.detailsurah.DetailSurahResponse
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
@@ -50,6 +51,10 @@ class MateriRepository(private val materiService: MateriService, private val con
             materiService.deleteMateri(token,id)
         }
 
+    suspend fun deleteSubMateri(token: String,id:String):Resource<DeleteSubMateriResponse> =
+        proceed {
+            materiService.deleteSubMateri(token,id)
+        }
     suspend fun addMateri(token: String,addMateriBody: AddMateriBody):Resource<AddMateriResponse> =
         proceed {
             materiService.addMateri(token,addMateriBody)

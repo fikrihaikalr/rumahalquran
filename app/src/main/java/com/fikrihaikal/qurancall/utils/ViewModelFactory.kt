@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fikrihaikal.qurancall.di.Injection
+import com.fikrihaikal.qurancall.ui.auth.forgotpassword.ForgotPasswordViewModel
 import com.fikrihaikal.qurancall.ui.teacher.hometeacher.HomeTeacherViewModel
 import com.fikrihaikal.qurancall.ui.auth.login.LoginViewModel
 import com.fikrihaikal.qurancall.ui.auth.onboarding.OnBoardingViewModel
@@ -15,6 +16,7 @@ import com.fikrihaikal.qurancall.ui.teacher.detaildoateacher.DetailDoaTeacherVie
 import com.fikrihaikal.qurancall.ui.teacher.detailmateriteacher.DetailContentTeacherViewModel
 import com.fikrihaikal.qurancall.ui.teacher.detailsurahteacher.DetailSurahTeacherViewModel
 import com.fikrihaikal.qurancall.ui.teacher.doateacher.DoaTeacherViewModel
+import com.fikrihaikal.qurancall.ui.teacher.gantifototeacher.GantiFotoTeacherViewModel
 import com.fikrihaikal.qurancall.ui.teacher.gantipasswordteacher.GantiPasswordTeacherViewModel
 import com.fikrihaikal.qurancall.ui.teacher.materibelajar.MateriBelajarTeacherViewModel
 import com.fikrihaikal.qurancall.ui.teacher.profileteacher.ProfileTeacherViewModel
@@ -27,6 +29,7 @@ import com.fikrihaikal.qurancall.ui.user.detailguru.DetailGuruViewModel
 import com.fikrihaikal.qurancall.ui.user.detailmateri.DetailContentViewModel
 import com.fikrihaikal.qurancall.ui.user.detailsurah.DetailSurahViewModel
 import com.fikrihaikal.qurancall.ui.user.doa.DoaViewModel
+import com.fikrihaikal.qurancall.ui.user.fotoprofile.uploadfoto.UploadFotoViewModel
 import com.fikrihaikal.qurancall.ui.user.gantipassword.GantiPasswordViewModel
 import com.fikrihaikal.qurancall.ui.user.home.HomeViewModel
 import com.fikrihaikal.qurancall.ui.user.listsubmateri.SubMenuMateriViewModel
@@ -123,6 +126,15 @@ class ViewModelFactory(private val context: Context)  : ViewModelProvider.Factor
             }
             modelClass.isAssignableFrom(UploadMateriViewModel::class.java) ->{
                 UploadMateriViewModel(Injection.provideMateriRepository(context),Injection.provideDataStore(context)) as T
+            }
+            modelClass.isAssignableFrom(UploadFotoViewModel::class.java) ->{
+                UploadFotoViewModel(Injection.provideRepository(context),Injection.provideDataStore(context)) as T
+            }
+            modelClass.isAssignableFrom(GantiFotoTeacherViewModel::class.java) ->{
+                GantiFotoTeacherViewModel(Injection.provideRepository(context),Injection.provideDataStore(context)) as T
+            }
+            modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java) ->{
+                ForgotPasswordViewModel(Injection.provideRepository(context)) as T
             }
             else ->throw java.lang.IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
 

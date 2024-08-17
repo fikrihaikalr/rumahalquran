@@ -25,6 +25,11 @@
         <action
             android:id="@+id/action_homeTeacherFragment_to_tambahKategoriFragment"
             app:destination="@id/tambahKategoriFragment" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_profileTeacherFragment"
+            app:destination="@id/profileTeacherFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/homeTeacherFragment"/>
     </fragment>
     <fragment
         android:id="@+id/materiBelajarTeacherFragment"
@@ -96,6 +101,9 @@
         <action
             android:id="@+id/action_settingTeacherFragment_to_homeTeacherFragment"
             app:destination="@id/homeTeacherFragment" />
+        <action
+            android:id="@+id/action_settingTeacherFragment_to_profileTeacherFragment"
+            app:destination="@id/profileTeacherFragment" />
     </fragment>
     <fragment
         android:id="@+id/gantiFotoTeacherFragment"

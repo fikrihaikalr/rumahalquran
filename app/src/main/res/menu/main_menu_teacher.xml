@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_compass"/>
 
     <item
-        android:id="@+id/alquranTeacherFragment"
+        android:id="@+id/surahTeacherFragment"
         android:icon="@drawable/ic_book"
         android:title="@string/al_qur_an" />
 

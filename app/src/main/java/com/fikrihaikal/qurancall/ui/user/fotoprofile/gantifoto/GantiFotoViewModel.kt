@@ -1,4 +1,4 @@
-package com.fikrihaikal.qurancall.ui.user.fotoprofile
+package com.fikrihaikal.qurancall.ui.user.fotoprofile.gantifoto
 
 import androidx.lifecycle.ViewModel
 

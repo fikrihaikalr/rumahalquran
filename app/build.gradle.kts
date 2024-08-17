@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -9,13 +11,17 @@ android {
     namespace = "com.fikrihaikal.qurancall"
     compileSdk = 34
 
+    val keyPropertiesFile = rootProject.file("gradle.properties")
+    val keyProperties = Properties()
+    keyProperties.load(keyPropertiesFile.inputStream())
+
     defaultConfig {
         applicationId = "com.fikrihaikal.qurancall"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "BASE_URL", "\"${keyProperties.getProperty("BASE_URL")}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +43,7 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -56,7 +63,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    //rxjava
+    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("com.jakewharton.rxbinding2:rxbinding:2.0.0")
     //imgCircle
     implementation("de.hdodenhof:circleimageview:3.1.0")
     //convert date hijrah
@@ -86,4 +95,6 @@ dependencies {
 
     //textview justify
     implementation("me.biubiubiu.justifytext:library:1.1")
+    //lottie
+    implementation("com.airbnb.android:lottie:3.7.0")
 }

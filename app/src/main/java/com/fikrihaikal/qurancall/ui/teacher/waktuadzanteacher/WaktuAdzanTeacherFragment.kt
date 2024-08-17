@@ -2,6 +2,8 @@ package com.fikrihaikal.qurancall.ui.teacher.waktuadzanteacher
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -17,16 +19,34 @@ import com.fikrihaikal.qurancall.network.model.response.adzan.KotaResponse
 import com.fikrihaikal.qurancall.network.model.response.adzan.WaktuAdzanResponse
 import com.fikrihaikal.qurancall.network.service.adzan.AdzanClient
 import com.fikrihaikal.qurancall.ui.teacher.waktuadzanteacher.adapter.AutoCompleteAdapterTeacher
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class WaktuAdzanTeacherFragment : Fragment() {
     private var _binding : FragmentWaktuAdzanTeacherBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adzanTeacherViewModel: WaktuAdzanTeacherViewModel
+
+    private val handler = Handler(Looper.getMainLooper())
+    private val updateTimeTask: Runnable = object : Runnable{
+        override fun run() {
+            updateClock()
+            handler.postDelayed(this,1000)
+        }
+    }
+
+    private fun updateClock(){
+        val currentTime = Calendar.getInstance().time
+        val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val formattedTime: String = simpleDateFormat.format(currentTime)
+        binding.tvJamDigital.text = formattedTime
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +58,8 @@ class WaktuAdzanTeacherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        handler.post(updateTimeTask)
+        initUi()
         adzanTeacherViewModel = ViewModelProvider(this).get(WaktuAdzanTeacherViewModel::class.java)
         binding.autoCompleteTextView.threshold = 1 //Setelah mengetik satu karakter, AutoCompleteTextView akan mulai menampilkan saran.
         val adapter = AutoCompleteAdapterTeacher(requireContext(), emptyList())
@@ -63,10 +84,6 @@ class WaktuAdzanTeacherFragment : Fragment() {
                         response: Response<WaktuAdzanResponse?>
                     ) {
                         if (response.isSuccessful) {
-//                            val waktuAdzanResponse = response.body()
-//
-////                            val jadwalAdzan = response.body()?.data?.jadwal
-//                            if (waktuAdzanResponse != null && waktuAdzanResponse.data != null){
                             val jadwalAdzan = response.body()?.data?.jadwal
                             Log.e("adzan","data berhasil diterima: $jadwalAdzan")
                             // Set nilai jadwal sholat ke TextView sesuai dengan id-nya
@@ -77,8 +94,6 @@ class WaktuAdzanTeacherFragment : Fragment() {
                                 tvJadwalMaghrib.text = jadwalAdzan?.maghrib.toString()
                                 tvJadwalIsya.text = jadwalAdzan?.isya.toString()
                             }
-//                            }
-                            // Lanjutkan untuk semua jadwal sholat yang Anda inginkan
                         } else {
                             Toast.makeText(
                                 requireContext(),
@@ -112,6 +127,14 @@ class WaktuAdzanTeacherFragment : Fragment() {
         adzanTeacherViewModel.cities.observe(requireActivity(), Observer { cities ->
             adapter.setData(cities)
         })
+    }
+
+    private fun initUi() {
+        val cal = UmmalquraCalendar()
+        val formatMonth =  cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH)
+        val formatDay = cal.get(Calendar.DAY_OF_MONTH)
+        val formatYear = cal.get(Calendar.YEAR)
+        binding.tvDateMasehi.text = "$formatDay $formatMonth $formatYear"
     }
 
     override fun onResume() {

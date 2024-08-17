@@ -1,5 +1,6 @@
 package com.fikrihaikal.qurancall.network.service.surah
 
+import com.fikrihaikal.qurancall.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ class SurahConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://rumah-quran-online-production.up.railway.app/api/")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

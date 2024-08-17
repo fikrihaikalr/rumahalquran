@@ -2,6 +2,8 @@ package com.fikrihaikal.qurancall.ui.teacher.alquranteacher.viewpager.surah
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,25 +42,20 @@ class SurahTeacherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager)
-        binding.tvJuz.setOnClickListener {
-            viewPager?.currentItem = 1
-        }
         setupUI()
         viewModel.getListSurah()
         setupObservers()
 
         // Mengatur fungsi pencarian ke SearchView
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+        binding.edSearchView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                surahAdapter.filter.filter(newText)
-                return false
+            override fun afterTextChanged(s: Editable?) {
+                surahAdapter.filter.filter(s.toString())
             }
-
         })
     }
 

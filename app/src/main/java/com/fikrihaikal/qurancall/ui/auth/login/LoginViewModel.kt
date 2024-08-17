@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fikrihaikal.qurancall.data.repository.DataRepository
+import com.fikrihaikal.qurancall.domain.model.user.login.UserLogin
+import com.fikrihaikal.qurancall.domain.usecase.login.ValidateUserUseCaseLogin
+import com.fikrihaikal.qurancall.domain.usecase.login.ValidationResultLogin
 import com.fikrihaikal.qurancall.network.model.response.login.LoginBody
 import com.fikrihaikal.qurancall.network.model.response.login.LoginResponse
 import com.fikrihaikal.qurancall.utils.Resource
@@ -17,7 +20,13 @@ class LoginViewModel(private val dataRepository: DataRepository,private val toke
     private val _login = MutableLiveData<Resource<LoginResponse>>()
     val login: LiveData<Resource<LoginResponse>> get() = _login
 
+    private val validateUserUseCaseLogin = ValidateUserUseCaseLogin()
+    val validationResult = MutableLiveData<ValidationResultLogin>()
 
+    fun validateUser(user: UserLogin){
+        val result = validateUserUseCaseLogin.validate(user)
+        validationResult.value = result
+    }
 
     fun login(loginBody:LoginBody){
         _login.postValue(Resource.Loading())
@@ -30,6 +39,9 @@ class LoginViewModel(private val dataRepository: DataRepository,private val toke
         }
     }
 
+    fun clearLoginState() {
+        _login.value = null
+    }
     fun saveIdNSaveToken(token: String, userId: Int){
         viewModelScope.launch(Dispatchers.IO) {
             tokenPreferences.saveToken(token)

@@ -1,5 +1,7 @@
 package com.fikrihaikal.qurancall.network.service.api
 
+
+import com.fikrihaikal.qurancall.BuildConfig
 import com.fikrihaikal.qurancall.utils.TokenPreferences
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -17,7 +19,7 @@ class ApiConfig{
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://rumah-quran-online-production.up.railway.app/api/")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
